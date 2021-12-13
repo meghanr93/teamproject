@@ -137,50 +137,52 @@ public class ColourMemo implements Initializable {
         System.exit(0);
     }
    
-    double buttonSetHeight=0;
-    double buttonSetWidth=0;
-    
+    double setHeight;
+    double setWidth;
+      
+    /* Button expands when mouse hovers over, shrinks when mouse stops hovering over it. */
     @FXML
     void btnHover(MouseEvent event) {
         /* Causes Buttons to expand when hovered over. */
         Button button = (Button) event.getSource();
-        buttonSetHeight=button.getPrefHeight();
-        buttonSetWidth=button.getPrefWidth();
-        button.setPrefHeight(buttonSetHeight*1.1);
-        button.setPrefWidth(buttonSetWidth*1.1);
-        button.setTranslateX((buttonSetWidth-buttonSetWidth*1.1)/2);
-        button.setTranslateY((buttonSetHeight-buttonSetHeight*1.1)/2);
+        setHeight=button.getPrefHeight();
+        setWidth=button.getPrefWidth();
+        button.setPrefHeight(setHeight*1.1);
+        button.setPrefWidth(setWidth*1.1);
+        button.setTranslateX((setWidth-setWidth*1.1)/2);
+        button.setTranslateY((setHeight-setHeight*1.1)/2);
         button.toFront();     
     }   
     @FXML
     void btnUnhover(MouseEvent event) {
         /* Causes expanded Buttons to shrink back to original size when not hovered over. */
         Button button = (Button) event.getSource();
-        button.setPrefHeight(buttonSetHeight);
-        button.setPrefWidth(buttonSetWidth);
+        button.setPrefHeight(setHeight);
+        button.setPrefWidth(setWidth);
         button.setTranslateX(0);
         button.setTranslateY(0);
         button.toBack();
     }
     
+    /* Image expands when mouse hovers over, shrinks when mouse stops hovering over it. */
     @FXML
     void imgHover(MouseEvent event) {
         /* Causes Buttons to expand when hovered over. */
         ImageView imageview = (ImageView) event.getSource();
-        buttonSetHeight=imageview.getFitHeight();
-        buttonSetWidth=imageview.getFitWidth();
-        imageview.setFitHeight(buttonSetHeight*1.1);
-        imageview.setFitWidth(buttonSetWidth*1.1);
-        imageview.setTranslateX((buttonSetWidth-buttonSetWidth*1.1)/2);
-        imageview.setTranslateY((buttonSetHeight-buttonSetHeight*1.1)/2);
+        setHeight=imageview.getFitHeight();
+        setWidth=imageview.getFitWidth();
+        imageview.setFitHeight(setHeight*1.1);
+        imageview.setFitWidth(setWidth*1.1);
+        imageview.setTranslateX((setWidth-setWidth*1.1)/2);
+        imageview.setTranslateY((setHeight-setHeight*1.1)/2);
         imageview.toFront();     
     }   
     @FXML
     void imgUnhover(MouseEvent event) {
         /* Causes expanded Buttons to shrink back to original size when not hovered over. */
         ImageView imageview = (ImageView) event.getSource();
-        imageview.setFitHeight(buttonSetHeight);
-        imageview.setFitWidth(buttonSetWidth);
+        imageview.setFitHeight(setHeight);
+        imageview.setFitWidth(setWidth);
         imageview.setTranslateX(0);
         imageview.setTranslateY(0);
         imageview.toBack();
@@ -188,6 +190,7 @@ public class ColourMemo implements Initializable {
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }  
 }

@@ -124,20 +124,20 @@
             <Font name="Eras Bold ITC" size="18.0" />
          </font>
       </Label>
-      <Arc fill="#ff2d1f" layoutX="24.0" layoutY="50.0" length="270.0" radiusX="11.0" radiusY="8.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fill="#ff1f1f" layoutX="134.0" layoutY="52.0" length="270.0" radiusX="11.0" radiusY="8.0" rotate="180.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fill="WHITE" layoutX="24.0" layoutY="50.0" length="270.0" radiusX="11.0" radiusY="8.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fill="WHITE" layoutX="134.0" layoutY="48.0" length="270.0" radiusX="11.0" radiusY="8.0" rotate="180.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
       <Arc fill="#ff3737" layoutX="291.0" layoutY="187.0" length="270.0" radiusX="11.0" radiusY="8.0" rotate="90.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
       <AnchorPane fx:id="AncPole" layoutX="271.0" layoutY="78.0" prefHeight="132.0" prefWidth="32.0" />
-      <Arc fx:id="ArcFishnin" fill="#ff801f" layoutX="117.0" layoutY="27.0" length="270.0" radiusX="17.0" radiusY="9.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishtwen" fill="#ff801f" layoutX="82.0" layoutY="29.0" length="270.0" radiusX="17.0" radiusY="8.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishfou" fill="#ff801f" layoutX="58.0" layoutY="28.0" length="270.0" radiusX="17.0" radiusY="9.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishsixt" fill="#ff801f" layoutX="92.0" layoutY="24.0" length="270.0" radiusX="17.0" radiusY="9.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFisheighte" fill="#ff801f" layoutX="109.0" layoutY="29.0" length="270.0" radiusX="19.0" radiusY="8.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishele" fill="#ff801f" layoutX="29.0" layoutY="26.0" length="270.0" radiusX="19.0" radiusY="8.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishfif" fill="#ff801f" layoutX="72.0" layoutY="24.0" length="270.0" radiusX="17.0" radiusY="10.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishthi" fill="#ff801f" layoutX="48.0" layoutY="29.0" length="270.0" radiusX="17.0" radiusY="9.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishseve" fill="#ff801f" layoutX="101.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="9.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Arc fx:id="ArcFishtwe" fill="#ff801f" layoutX="37.0" layoutY="27.0" length="270.0" radiusX="17.0" radiusY="9.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishnin" fill="#ff801f" layoutX="120.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishtwen" fill="#ff801f" layoutX="72.0" layoutY="25.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishfou" fill="#ff801f" layoutX="55.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishsixt" fill="#ff801f" layoutX="82.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFisheighte" fill="#ff801f" layoutX="100.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishele" fill="#ff801f" layoutX="109.0" layoutY="25.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishfif" fill="#ff801f" layoutX="63.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishthi" fill="#ff801f" layoutX="45.0" layoutY="28.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishseve" fill="#ff801f" layoutX="34.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishtwe" fill="#ff801f" layoutX="91.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
       <Button fx:id="btnTools" layoutX="534.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#btnTools" prefHeight="21.0" prefWidth="66.0" text="Tools">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />

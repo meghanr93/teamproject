@@ -30,14 +30,15 @@ public class ColourMemo implements Initializable {
     int squareNum;
     int patternSize;
     boolean correct;
+    boolean canClick=false;
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1000), ae -> lightUp()));
-    Image red = new Image(getClass().getResource("/red.jpg").toString());
+    Image red = new Image(getClass().getResource("/red.png").toString());
     Image blue = new Image(getClass().getResource("/blue.png").toString());
-    Image yellow = new Image(getClass().getResource("/yellow.jpg").toString());
+    Image yellow = new Image(getClass().getResource("/yellow.png").toString());
     Image green = new Image(getClass().getResource("/green.png").toString());
     Image litRed = new Image(getClass().getResource("/redlit.png").toString());
     Image litBlue = new Image(getClass().getResource("/bluelit.png").toString());
-    Image litYellow = new Image(getClass().getResource("/yellowlit.jpg").toString());
+    Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
     
     @FXML
@@ -63,7 +64,8 @@ public class ColourMemo implements Initializable {
             imgBlue.setImage(blue);
             imgYellow.setImage(yellow);
             imgGreen.setImage(green);
-            timeline.stop();          
+            timeline.stop();   
+            canClick=true;
         }
         else{
         switch(squareNum){
@@ -103,7 +105,7 @@ public class ColourMemo implements Initializable {
             patternNum=0;
             pattern.add(rand);
             patternSize = pattern.size();
-            lblStreak.setText(""+(patternSize));
+            lblStreak.setText(""+(patternSize-1));
             timeline.play();
     }
     
@@ -116,31 +118,32 @@ public class ColourMemo implements Initializable {
     
     @FXML
     void imgSquare (MouseEvent event){
-        ImageView imageView = (ImageView) event.getSource();
-        imageView.setFitHeight(setHeight);
-        imageView.setFitWidth(setWidth);
-        imageView.setTranslateX(0);
-        imageView.setTranslateY(0);
-        imageView.toBack();
-        if (imageView==imgRed){
+        if (canClick==true){
+        ImageView square = (ImageView) event.getSource();
+        square.setFitHeight(setHeight);
+        square.setFitWidth(setWidth);
+        square.setTranslateX(0);
+        square.setTranslateY(0);
+        square.toBack();
+        if (square==imgRed){
             imgRed.setImage(red);           
         }
-        else if (imageView==imgBlue){            
+        else if (square==imgBlue){            
             imgBlue.setImage(blue);
         }
-        else if (imageView==imgYellow){           
+        else if (square==imgYellow){           
             imgYellow.setImage(yellow);
         }
-        else if (imageView==imgGreen){
+        else if (square==imgGreen){
             imgGreen.setImage(green);
         }
-        ImageView square=(ImageView) event.getSource();
         int squareClicked=Integer.parseInt(square.getAccessibleText());
         getPattern();
         correct=squareClicked==squareNum;
         if (correct==true){
-            if (patternNum==patternSize){
+            if (patternNum==patternSize-1){
                 makePattern();
+                canClick=false;
             }
             else {
                 patternNum=patternNum+1;
@@ -149,12 +152,15 @@ public class ColourMemo implements Initializable {
         else {
             lose();
         }
+        }
     }
     
     void lose(){
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
+        lblStreak.setText("0");
+        canClick=false;
     }
     
     @FXML
@@ -200,6 +206,7 @@ public class ColourMemo implements Initializable {
     @FXML
     void imgHover(MouseEvent event) {
         /* Causes Buttons to expand when hovered over. */
+        if (canClick==true){
         ImageView imageView = (ImageView) event.getSource();
         setHeight=imageView.getFitHeight();
         setWidth=imageView.getFitWidth();
@@ -220,10 +227,12 @@ public class ColourMemo implements Initializable {
         else if (imageView==imgGreen){
             imgGreen.setImage(litGreen);
         }
+        }
     }   
     @FXML
     void imgUnhover(MouseEvent event) {
         /* Causes expanded Buttons to shrink back to original size when not hovered over. */
+        if (canClick==true){
         ImageView imageView = (ImageView) event.getSource();
         imageView.setFitHeight(setHeight);
         imageView.setFitWidth(setWidth);
@@ -241,6 +250,7 @@ public class ColourMemo implements Initializable {
         }
         else if (imageView==imgGreen){
             imgGreen.setImage(green);
+        }
         }
     }
  

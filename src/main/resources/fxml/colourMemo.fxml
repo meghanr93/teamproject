@@ -11,7 +11,7 @@
    <children>
       <ImageView fx:id="imgRed" accessibleText="1" fitHeight="150.0" fitWidth="150.0" layoutX="142.0" layoutY="104.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../red.jpg" />
+            <Image url="@../red.png" />
          </image>
       </ImageView>
       <ImageView fx:id="imgBlue" accessibleText="2" fitHeight="150.0" fitWidth="150.0" layoutX="306.0" layoutY="104.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
@@ -26,7 +26,7 @@
       </ImageView>
       <ImageView fx:id="imgYellow" accessibleText="3" fitHeight="150.0" fitWidth="150.0" layoutX="142.0" layoutY="271.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../yellow.jpg" />
+            <Image url="@../yellow.png" />
          </image>
       </ImageView>
       <Label layoutX="263.0" layoutY="20.0" prefHeight="36.0" prefWidth="75.0" text="Streak" textFill="WHITE">

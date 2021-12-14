@@ -169,5 +169,24 @@
       <Line endX="2.0" layoutX="211.0" layoutY="135.0" startX="-6.0" startY="-7.0" />
       <Line endX="-2.29290771484375" endY="-3.29290771484375" layoutX="216.0" layoutY="139.0" startX="-10.0" startY="4.0" />
       <Line endX="5.0" endY="3.0" layoutX="211.0" layoutY="147.0" startX="-5.70709228515625" startY="-3.29290771484375" />
+      <AnchorPane fx:id="AncPreStart" layoutX="72.0" layoutY="133.0" prefHeight="177.0" prefWidth="452.0" style="-fx-background-color: white;">
+         <children>
+            <Button layoutX="131.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlay" prefHeight="24.0" prefWidth="80.0" text="Play" textFill="#28dd80">
+               <font>
+                  <Font name="Eras Bold ITC" size="18.0" />
+               </font>
+            </Button>
+            <Button layoutX="248.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnExitga" prefHeight="22.0" prefWidth="80.0" text="Exit" textFill="#eb2121">
+               <font>
+                  <Font name="Eras Bold ITC" size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="144.0" layoutY="35.0" prefHeight="43.0" prefWidth="151.0" text="     Ice Fish" textFill="#7c83ff">
+               <font>
+                  <Font name="Eras Bold ITC" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

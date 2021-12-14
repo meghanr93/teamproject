@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
 /**
@@ -40,7 +42,7 @@ public class ColourMemo implements Initializable {
     Image litBlue = new Image(getClass().getResource("/bluelit.png").toString());
     Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
-    
+       MediaPlayer player;
     @FXML
     private ImageView imgRed;
     @FXML
@@ -56,42 +58,34 @@ public class ColourMemo implements Initializable {
     @FXML
     private Button btnStart;
     
+    void setColours(Image red, Image blue, Image yellow, Image green){
+        imgRed.setImage(red);
+            imgBlue.setImage(blue);
+            imgYellow.setImage(yellow);
+            imgGreen.setImage(green);
+    }
+    
     void lightUp(){
         getPattern();
         if (patternNum==patternSize){
             patternNum=0;
-            imgRed.setImage(red);
-            imgBlue.setImage(blue);
-            imgYellow.setImage(yellow);
-            imgGreen.setImage(green);
+            setColours(red,blue,yellow,green);
             timeline.stop();   
             canClick=true;
         }
         else{
         switch(squareNum){
         case 1:
-            imgRed.setImage(litRed);
-            imgBlue.setImage(blue);
-            imgYellow.setImage(yellow);
-            imgGreen.setImage(green);
+            setColours(litRed,blue,yellow,green);
 	break;
 	case 2:
-            imgRed.setImage(red);
-            imgBlue.setImage(litBlue);
-            imgYellow.setImage(yellow);
-            imgGreen.setImage(green);
+            setColours(red,litBlue,yellow,green);
 	break;
 	case 3:
-            imgRed.setImage(red);
-            imgBlue.setImage(blue);
-            imgYellow.setImage(litYellow);
-            imgGreen.setImage(green);
+            setColours(red,blue,litYellow,green);
 	break;
 	case 4:
-            imgRed.setImage(red);
-            imgBlue.setImage(blue);
-            imgYellow.setImage(yellow);
-            imgGreen.setImage(litGreen);
+            setColours(red,blue,yellow,litGreen);
 	break;
 	default:
 	break;
@@ -141,6 +135,7 @@ public class ColourMemo implements Initializable {
         getPattern();
         correct=squareClicked==squareNum;
         if (correct==true){
+            playSound("/correct.mp3");
             if (patternNum==patternSize-1){
                 makePattern();
                 canClick=false;
@@ -156,6 +151,7 @@ public class ColourMemo implements Initializable {
     }
     
     void lose(){
+        playSound("/incorrect.mp3");
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
@@ -173,6 +169,11 @@ public class ColourMemo implements Initializable {
     @FXML
     void btnMenu(ActionEvent event) {
         System.exit(0);
+    }
+    
+    void playSound(String soundname){    
+        player = new MediaPlayer((new Media(getClass().getResource(soundname).toString())));
+        player.play();
     }
    
     double setHeight;

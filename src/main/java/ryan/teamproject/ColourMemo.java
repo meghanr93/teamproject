@@ -20,7 +20,7 @@ import javafx.util.Duration;
 /**
  Meghan Ryan
  12/13/2021
- Colour Memorization Minigame
+ Color Memorization Mini Game
  */
 
 public class ColourMemo implements Initializable {
@@ -52,8 +52,20 @@ public class ColourMemo implements Initializable {
     @FXML
     private Label lblStreak;
     
+    @FXML
+    private Button btnStart;
+    
     void lightUp(){
         getPattern();
+        if (patternNum==patternSize){
+            patternNum=0;
+            imgRed.setImage(red);
+            imgBlue.setImage(blue);
+            imgYellow.setImage(yellow);
+            imgGreen.setImage(green);
+            timeline.stop();          
+        }
+        else{
         switch(squareNum){
         case 1:
             imgRed.setImage(litRed);
@@ -81,40 +93,57 @@ public class ColourMemo implements Initializable {
 	break;
 	default:
 	break;
+        }       
+            patternNum=patternNum+1;
         }
-            patternNum = patternNum + 1;
-        }
+    }
     
     void makePattern(){
         int rand = ThreadLocalRandom.current().nextInt(1,4+1);
+            patternNum=0;
             pattern.add(rand);
             patternSize = pattern.size();
-            lblStreak.setText(""+(patternSize-1));
+            lblStreak.setText(""+(patternSize));
+            timeline.play();
     }
     
     void getPattern(){
-        squareNum = pattern.get(patternNum);
-        patternSize = pattern.size();
+        patternSize=pattern.size();
+        if (patternNum!=patternSize){
+        squareNum=pattern.get(patternNum);
+        }
     }
     
     @FXML
     void imgSquare (MouseEvent event){
-        ImageView square = (ImageView) event.getSource();
-        int squareClicked = Integer.parseInt(square.getAccessibleText());
+        ImageView imageView = (ImageView) event.getSource();
+        imageView.setFitHeight(setHeight);
+        imageView.setFitWidth(setWidth);
+        imageView.setTranslateX(0);
+        imageView.setTranslateY(0);
+        imageView.toBack();
+        if (imageView==imgRed){
+            imgRed.setImage(red);           
+        }
+        else if (imageView==imgBlue){            
+            imgBlue.setImage(blue);
+        }
+        else if (imageView==imgYellow){           
+            imgYellow.setImage(yellow);
+        }
+        else if (imageView==imgGreen){
+            imgGreen.setImage(green);
+        }
+        ImageView square=(ImageView) event.getSource();
+        int squareClicked=Integer.parseInt(square.getAccessibleText());
         getPattern();
-        if (squareClicked == squareNum){
-            correct = true;
-        }
-        else {
-            correct = false;
-        }
-        if (correct == true){
-            if (patternNum == patternSize){
-                patternNum = 0;
+        correct=squareClicked==squareNum;
+        if (correct==true){
+            if (patternNum==patternSize){
                 makePattern();
             }
             else {
-                patternNum = patternNum + 1;
+                patternNum=patternNum+1;
             }
         }
         else {
@@ -124,12 +153,15 @@ public class ColourMemo implements Initializable {
     
     void lose(){
         pattern.clear();
-        patternNum = 0;
+        patternNum=0;
+        btnStart.setDisable(false);
     }
     
     @FXML
-    void btnStart (ActionEvent event){
+    void btnStartClick (ActionEvent event){
         makePattern();
+        timeline.play();
+        btnStart.setDisable(true);
     }
     
     @FXML
@@ -168,29 +200,52 @@ public class ColourMemo implements Initializable {
     @FXML
     void imgHover(MouseEvent event) {
         /* Causes Buttons to expand when hovered over. */
-        ImageView imageview = (ImageView) event.getSource();
-        setHeight=imageview.getFitHeight();
-        setWidth=imageview.getFitWidth();
-        imageview.setFitHeight(setHeight*1.1);
-        imageview.setFitWidth(setWidth*1.1);
-        imageview.setTranslateX((setWidth-setWidth*1.1)/2);
-        imageview.setTranslateY((setHeight-setHeight*1.1)/2);
-        imageview.toFront();     
+        ImageView imageView = (ImageView) event.getSource();
+        setHeight=imageView.getFitHeight();
+        setWidth=imageView.getFitWidth();
+        imageView.setFitHeight(setHeight*1.1);
+        imageView.setFitWidth(setWidth*1.1);
+        imageView.setTranslateX((setWidth-setWidth*1.1)/2);
+        imageView.setTranslateY((setHeight-setHeight*1.1)/2);
+        imageView.toFront();   
+        if (imageView==imgRed){
+            imgRed.setImage(litRed);           
+        }
+        else if (imageView==imgBlue){            
+            imgBlue.setImage(litBlue);
+        }
+        else if (imageView==imgYellow){           
+            imgYellow.setImage(litYellow);
+        }
+        else if (imageView==imgGreen){
+            imgGreen.setImage(litGreen);
+        }
     }   
     @FXML
     void imgUnhover(MouseEvent event) {
         /* Causes expanded Buttons to shrink back to original size when not hovered over. */
-        ImageView imageview = (ImageView) event.getSource();
-        imageview.setFitHeight(setHeight);
-        imageview.setFitWidth(setWidth);
-        imageview.setTranslateX(0);
-        imageview.setTranslateY(0);
-        imageview.toBack();
+        ImageView imageView = (ImageView) event.getSource();
+        imageView.setFitHeight(setHeight);
+        imageView.setFitWidth(setWidth);
+        imageView.setTranslateX(0);
+        imageView.setTranslateY(0);
+        imageView.toBack();
+        if (imageView==imgRed){
+            imgRed.setImage(red);           
+        }
+        else if (imageView==imgBlue){            
+            imgBlue.setImage(blue);
+        }
+        else if (imageView==imgYellow){           
+            imgYellow.setImage(yellow);
+        }
+        else if (imageView==imgGreen){
+            imgGreen.setImage(green);
+        }
     }
  
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
     }  
 }

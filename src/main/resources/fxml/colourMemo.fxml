@@ -9,22 +9,22 @@
 
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ryan.teamproject.ColourMemo">
    <children>
-      <ImageView fx:id="imgRed" fitHeight="150.0" fitWidth="150.0" layoutX="142.0" layoutY="104.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgRed" accessibleText="1" fitHeight="150.0" fitWidth="150.0" layoutX="142.0" layoutY="104.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../red.jpg" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgBlue" fitHeight="150.0" fitWidth="150.0" layoutX="306.0" layoutY="104.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgBlue" accessibleText="2" fitHeight="150.0" fitWidth="150.0" layoutX="306.0" layoutY="104.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../blue.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgGreen" fitHeight="150.0" fitWidth="150.0" layoutX="306.0" layoutY="271.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgGreen" accessibleText="4" fitHeight="150.0" fitWidth="150.0" layoutX="306.0" layoutY="271.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../green.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgYellow" fitHeight="150.0" fitWidth="150.0" layoutX="142.0" layoutY="271.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgYellow" accessibleText="3" fitHeight="150.0" fitWidth="150.0" layoutX="142.0" layoutY="271.0" onMouseClicked="#imgSquare" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../yellow.jpg" />
          </image>
@@ -39,6 +39,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="271.0" layoutY="499.0" mnemonicParsing="false" onAction="#btnStart" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="36.0" prefWidth="60.0" text="Start" />
+      <Button fx:id="btnStart" layoutX="270.0" layoutY="473.0" mnemonicParsing="false" onAction="#btnStartClick" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="36.0" prefWidth="60.0" text="Start" />
+      <Button layoutX="271.0" layoutY="550.0" mnemonicParsing="false" onAction="#btnMenu" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="36.0" prefWidth="60.0" text="Menu" />
    </children>
 </AnchorPane>

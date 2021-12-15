@@ -11,6 +11,8 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -25,7 +27,11 @@ public class FXMLController implements Initializable {
 
     @FXML
     void btnInfo(ActionEvent event) {
-
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Info");
+        alert.setHeaderText(null);
+        alert.setContentText("Open the game menu to access 3 different mini games. Open the scores menu to look at player scores.(WIP).");
+        alert.showAndWait();
     }
 
     @FXML

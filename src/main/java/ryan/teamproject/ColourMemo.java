@@ -1,5 +1,10 @@
 
 package ryan.teamproject;
+/*
+ Meghan Ryan
+ 12/13/2021
+ Color Memorization Mini Game
+ */
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,13 +25,22 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
-/**
- Meghan Ryan
- 12/13/2021
- Color Memorization Mini Game
- */
-
 public class ColourMemo implements Initializable {
+    
+    @FXML
+    private ImageView imgRed;
+    @FXML
+    private ImageView imgBlue;
+    @FXML
+    private ImageView imgGreen;
+    @FXML
+    private ImageView imgYellow;
+    
+    @FXML
+    private Label lblStreak;
+    
+    @FXML
+    private Button btnStart;
    
     ArrayList<Integer> pattern = new ArrayList();
     int patternNum;
@@ -44,20 +58,6 @@ public class ColourMemo implements Initializable {
     Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
     MediaPlayer player;
-    @FXML
-    private ImageView imgRed;
-    @FXML
-    private ImageView imgBlue;
-    @FXML
-    private ImageView imgGreen;
-    @FXML
-    private ImageView imgYellow;
-    
-    @FXML
-    private Label lblStreak;
-    
-    @FXML
-    private Button btnStart;
     
     //Code to change the coloured square images.
     void setColours(Image red, Image blue, Image yellow, Image green){
@@ -192,7 +192,6 @@ public class ColourMemo implements Initializable {
     /* Button expands when mouse hovers over, shrinks when mouse stops hovering over it. */
     @FXML
     void btnHover(MouseEvent event) {
-        /* Causes Buttons to expand when hovered over. */
         Button button = (Button) event.getSource();
         setHeight=button.getPrefHeight();
         setWidth=button.getPrefWidth();
@@ -204,7 +203,6 @@ public class ColourMemo implements Initializable {
     }   
     @FXML
     void btnUnhover(MouseEvent event) {
-        /* Causes expanded Buttons to shrink back to original size when not hovered over. */
         Button button = (Button) event.getSource();
         button.setPrefHeight(setHeight);
         button.setPrefWidth(setWidth);

@@ -1,24 +1,34 @@
+package ryan.teamproject;
 /*
 Meghan Ryan
 12/15/2021    
 This screen is a menu to access the mini games.
 */
-package ryan.teamproject;
 
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class Games {
        
+    //Opens the mini game screens.
     @FXML
-    //Opens the Colour Memorization mini game screen.
     void imgColourMemo(MouseEvent event)throws IOException {
         MainApp.setRoot("colourMemo");
     }
+    @FXML
+    void imgFishing(MouseEvent event)throws IOException {
+
+    }
+    @FXML
+    void imgFrogger(MouseEvent event)throws IOException {
+
+    }
+
         
     @FXML
     //Opens the title screen.
@@ -26,9 +36,27 @@ public class Games {
         MainApp.setRoot("primary");
     }
     
+    //Brings up an Alert box.
+    void gameInfo(String info){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Game Info");
+        alert.setHeaderText(null);
+        alert.setContentText(info);
+        alert.showAndWait();
+    }
+
+    //Game information buttons.
     @FXML
     void btnColourMemoInfo(ActionEvent event) {
-        
+        gameInfo("A colour memorization game. The coloured squares will flash in a pattern that you must memorize. Repeat the pattern correctly and the pattern will get longer by one. See how long of a pattern you can memorize!");
+    }
+    @FXML
+    void btnFishingInfo(ActionEvent event) {
+        gameInfo("A fishing game. Move your mouse up and down to move the hook, catch fish and bring them back up to you while avoiding hazards.");
+    }
+    @FXML
+    void btnFroggerInfo(ActionEvent event) {
+        gameInfo("A frogger like game. Get to the other end of the screen, landing on platforms and avoiding obstacles.");
     }
     
     double setHeight;

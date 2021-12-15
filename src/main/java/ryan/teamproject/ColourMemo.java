@@ -1,6 +1,7 @@
 
 package ryan.teamproject;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -42,7 +43,7 @@ public class ColourMemo implements Initializable {
     Image litBlue = new Image(getClass().getResource("/bluelit.png").toString());
     Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
-       MediaPlayer player;
+    MediaPlayer player;
     @FXML
     private ImageView imgRed;
     @FXML
@@ -58,13 +59,15 @@ public class ColourMemo implements Initializable {
     @FXML
     private Button btnStart;
     
+    //Code to change the coloured square images.
     void setColours(Image red, Image blue, Image yellow, Image green){
         imgRed.setImage(red);
-            imgBlue.setImage(blue);
-            imgYellow.setImage(yellow);
-            imgGreen.setImage(green);
+        imgBlue.setImage(blue);
+        imgYellow.setImage(yellow);
+        imgGreen.setImage(green);
     }
     
+    //Code lighting up the coloured squares to show the pattern.
     void lightUp(){
         getPattern();
         if (patternNum==patternSize){
@@ -94,6 +97,7 @@ public class ColourMemo implements Initializable {
         }
     }
     
+    //Makes an addition to the colour pattern.
     void makePattern(){
         int rand = ThreadLocalRandom.current().nextInt(1,4+1);
             patternNum=0;
@@ -103,6 +107,7 @@ public class ColourMemo implements Initializable {
             timeline.play();
     }
     
+    //Gets the colour pattern.
     void getPattern(){
         patternSize=pattern.size();
         if (patternNum!=patternSize){
@@ -111,6 +116,7 @@ public class ColourMemo implements Initializable {
     }
     
     @FXML
+    //Code plays when player clicks a square, testing if they are correctly following the pattern.
     void imgSquare (MouseEvent event){
         if (canClick==true){
         ImageView square = (ImageView) event.getSource();
@@ -150,6 +156,7 @@ public class ColourMemo implements Initializable {
         }
     }
     
+    //Code plays when an incorrect part of the pattern is chosen.
     void lose(){
         playSound("/incorrect.mp3");
         pattern.clear();
@@ -160,6 +167,7 @@ public class ColourMemo implements Initializable {
     }
     
     @FXML
+    //Creates the first part of the colour pattern and starts the game.
     void btnStartClick (ActionEvent event){
         makePattern();
         timeline.play();
@@ -167,10 +175,12 @@ public class ColourMemo implements Initializable {
     }
     
     @FXML
-    void btnMenu(ActionEvent event) {
-        System.exit(0);
+    //Opens the game menu screen
+    void btnMenu(ActionEvent event)throws IOException {
+        MainApp.setRoot("gamesMenu");
     }
     
+    //Plays a sound
     void playSound(String soundname){    
         player = new MediaPlayer((new Media(getClass().getResource(soundname).toString())));
         player.play();

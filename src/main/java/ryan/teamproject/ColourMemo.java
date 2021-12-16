@@ -9,6 +9,7 @@ package ryan.teamproject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.animation.KeyFrame;
@@ -18,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -97,6 +99,14 @@ public class ColourMemo implements Initializable {
         }
     }
     
+    void normalSize(ImageView imageView){
+        imageView.setFitHeight(150);
+        imageView.setFitWidth(150);
+        imageView.setTranslateX(0);
+        imageView.setTranslateY(0);
+        imageView.toBack();
+    }
+    
     //Makes an addition to the colour pattern.
     void makePattern(){
         int rand = ThreadLocalRandom.current().nextInt(1,4+1);
@@ -159,6 +169,13 @@ public class ColourMemo implements Initializable {
     //Code plays when an incorrect part of the pattern is chosen.
     void lose(){
         playSound("/incorrect.mp3");
+        TextInputDialog dialog = new TextInputDialog("");
+        dialog.setTitle("Scores");
+        dialog.setHeaderText(null);
+        dialog.setContentText("Please enter your name:");
+        Optional<String> result = dialog.showAndWait();
+        String name=dialog.getEditor().getText();
+        
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
@@ -216,6 +233,10 @@ public class ColourMemo implements Initializable {
     void imgHover(MouseEvent event) {
         /* Causes Buttons to expand when hovered over. */
         if (canClick==true){
+        normalSize(imgRed);
+        normalSize(imgBlue);
+        normalSize(imgYellow);
+        normalSize(imgGreen);
         ImageView imageView = (ImageView) event.getSource();
         setHeight=imageView.getFitHeight();
         setWidth=imageView.getFitWidth();
@@ -261,6 +282,10 @@ public class ColourMemo implements Initializable {
             imgGreen.setImage(green);
         }
         }
+        normalSize(imgRed);
+        normalSize(imgBlue);
+        normalSize(imgYellow);
+        normalSize(imgGreen);
     }
  
     @Override

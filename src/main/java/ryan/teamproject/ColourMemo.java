@@ -59,7 +59,8 @@ public class ColourMemo implements Initializable {
     Image litBlue = new Image(getClass().getResource("/bluelit.png").toString());
     Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
-    MediaPlayer player;
+    MediaPlayer soundPlayer;
+    ArrayList<player> players=new ArrayList();
     
     //Code to change the coloured square images.
     void setColours(Image red, Image blue, Image yellow, Image green){
@@ -175,12 +176,32 @@ public class ColourMemo implements Initializable {
         dialog.setContentText("Please enter your name:");
         Optional<String> result = dialog.showAndWait();
         String name=dialog.getEditor().getText();
-        
+        readPlayers();
+        if (players.contains(name)){
+            if ((patternSize-1)>(players.get(a).getMemoScore())){
+                players.get(a).setMemoScore(patternSize-1);
+            }
+            else{
+                
+            }
+        }
+        else{
+            players.add(new player(name,(patternSize-1),0,0));
+        }
+        writePlayers();
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
         lblStreak.setText("0");
         canClick=false;
+    }
+    
+    void readPlayers(){
+        
+    }
+    
+    void writePlayers(){
+        
     }
     
     @FXML
@@ -199,8 +220,8 @@ public class ColourMemo implements Initializable {
     
     //Plays a sound
     void playSound(String soundname){    
-        player = new MediaPlayer((new Media(getClass().getResource(soundname).toString())));
-        player.play();
+        soundPlayer = new MediaPlayer((new Media(getClass().getResource(soundname).toString())));
+        soundPlayer.play();
     }
    
     double setHeight;

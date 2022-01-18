@@ -31,11 +31,17 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
+import java.io.IOException;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 //import static ryan.teamproject.MainApp.setRoot;
 
 
 public class FXMLController implements Initializable {
-    int directionY=0;
+   boolean run=false;
+   int directionY=0;
     int directionX=0;
        int getTranslateY=0;
     int getTranslateX=0;
@@ -44,7 +50,6 @@ public class FXMLController implements Initializable {
      Timeline camerastime = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveCamera()));
          Timeline fishtime = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveFish()));
              Timeline jellyfishtime = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveJellyfish()));
-    
      @FXML
     private AnchorPane AncFishone, AncFishtwo, AncFishthr, AncFishfour, AncFishFive, AncFishten, AncFishnine, AncFishsev, AncFisheigh, AncFishSix,
 AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCamtwo, AncCamfou, AncCamone, AncCameig, AncCamsev, AncCamsix, AncPole, AncPreStart;
@@ -71,18 +76,26 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
     AnchorPane cameras[];
     int score = 0;
     int wins = 0;
-    
+   
     @FXML
     void btnExit(ActionEvent event) {
         System.exit(0);
     }
 
     @FXML
-    void btnRestart(ActionEvent event) {
+    void btnRest(ActionEvent event) {
       AncPreStart.setVisible(true);
         AncPole.setDisable(true);
-
-
+        btnTools.setDisable (false);
+btnExit.setVisible (false);
+btnRest.setVisible (false);
+camerastime.setCycleCount(Timeline.INDEFINITE);
+camerastime.stop();
+fishtime.setCycleCount(Timeline.INDEFINITE);
+fishtime.stop();
+jellyfishtime.setCycleCount(Timeline.INDEFINITE);
+jellyfishtime.stop();
+        
         AnchorPane temp[] = {AncFishone, AncFishtwo, AncFishthr, AncFishfour, AncFishFive,
             AncFishsev, AncFisheigh, AncFishnine, AncFishten};
         fish = temp;
@@ -122,6 +135,7 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
     @FXML
     void btnExitga(ActionEvent event) throws IOException {
  MainApp.setRoot("start");
+ wins=0;
     }
 
     @FXML
@@ -129,109 +143,128 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
              AncPole.setTranslateX(AncPole.getTranslateX() + directionX);
         AncPole.setTranslateY(AncPole.getTranslateY() + directionY); 
         Rectangle rec = (Rectangle) event.getSource();
-        Bounds arg0 = null;
-        if (AncCamfive.intersects(arg0)) {
-            AncCamone.setVisible(true);
-            AncCamfive.setDisable(true);
-        } //makes camera disappear in water and "reappear" on ice
-        if (AncCamsix.intersects(arg0)) {
-            AncCamtwo.setVisible(true);
-             AncCamsix.setDisable(true);
-//makes camera disappear in water and "reappear" on ice
+        
+                if (event.getCode() == KeyCode.D) {
+            directionX=10;
+            directionY=0;
         }
-        if (AncCamsev.intersects(arg0)) {
-            AncCamthr.setVisible(true);
-             AncCamsev.setDisable(true);
-             
-//makes camera disappear in water and "reappear" on ice
+    
+    
+            if (event.getCode() == KeyCode.X) {
+            directionX=0;
+            directionY=-10;
         }
-        if (AncCameig.intersects(arg0)) {
-            AncCamfou.setVisible(true);
-             AncCameig.setDisable(true);
-//makes camera disappear in water and "reappear" on ice
+    
+                if (event.getCode() == KeyCode.A) {
+            directionX=-10;
+            directionY=0;
         }
-        if (AncFishone.intersects(arg0)) {
+        
+                if (event.getCode() == KeyCode.W) {
+            directionX=0;
+            directionY=10;
+        }
+                if (collision(recWallpr, AncPole))  {
+               directionX=1;
+           directionY=0; 
+                }
+                  if (collision(recWallpl, AncPole))  {
+               directionX=1;
+           directionY=0; 
+                }
+                
+        if (collision(recWallt, AncPole))  {
+         directionX=0;
+            directionY=1;   
+        }
+        
+          if (collision(recWallb, AncPole))  {
+         directionX=0;
+            directionY=1;   
+        }
+          
+     if (collision(AncFishone, AncPole))  {
             ArcFishnin.setVisible(true);
-             AncFishone.setDisable(true);
+             AncFishone.setVisible(true);
 //makes fish disappear in water and "reappear" on ice
                score++;
                 lblCooler.setText("" + score);
                  checkWin();
         }
-        if (AncFishtwo.intersects(arg0)) {
+        if (collision(AncFishtwo, AncPole))  {
             ArcFishtwen.setVisible(true);
-            AncFishtwo.setDisable(true);
+            AncFishtwo.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishthr.intersects(arg0)) {
+         if (collision(AncFishthr, AncPole))  {
             ArcFishele.setVisible(true);
-            AncFishthr.setDisable(true);
+            AncFishthr.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishfour.intersects(arg0)) {
+         if (collision(AncFishfour, AncPole)) {
             ArcFisheighte.setVisible(true);
-            AncFishfour.setDisable(true);
+            AncFishfour.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishFive.intersects(arg0)) {
+         if (collision(AncFishFive, AncPole))  {
             ArcFishtwe.setVisible(true);
-            AncFishFive.setDisable(true);
+            AncFishFive.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishSix.intersects(arg0)) {
+         if (collision(AncFishSix, AncPole))  {
             ArcFishsixt.setVisible(true);
-            AncFishSix.setDisable(true);
+            AncFishSix.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishsev.intersects(arg0)) {
+        if (collision(AncFishsev, AncPole))  {
             ArcFishseve.setVisible(true);
-            AncFishsev.setDisable(true);
+            AncFishsev.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFisheigh.intersects(arg0)) {
+         if (collision(AncFisheigh, AncPole))  {
             ArcFishfif.setVisible(true);
-            AncFisheigh.setDisable(true);
+            AncFisheigh.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();    
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishnine.intersects(arg0)) {
+         if (collision(AncFishnine, AncPole)) {
             ArcFishfou.setVisible(true);
-            AncFishnine.setDisable(true);
+            AncFishnine.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
-        if (AncFishten.intersects(arg0)) {
+         if (collision(AncFishten, AncPole))  {
             ArcFishthi.setVisible(true);
-            AncFishten.setDisable(true);
+            AncFishten.setVisible(false);
               score++;
               lblCooler.setText("" + score);
                        checkWin();
                        //makes fish disappear in water and "reappear" on ice
         }
 
-        if (AncJellyone.intersects(arg0)) {
+         if (collision(AncJellyone, AncPole))  {
             rec.setFill(Color.BLACK);
            fishtime.stop();
            camerastime.stop();
@@ -241,7 +274,7 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
         checkWin();
         //makes pole turn black when hit by jellyfish, loss method
         }
-        if (AncJellytwo.intersects(arg0)) {
+        if (collision(AncJellytwo, AncPole))  {
             rec.setFill(Color.BLACK);
            fishtime.stop();
            camerastime.stop();
@@ -251,7 +284,7 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
                  checkWin();
                        //makes pole turn black when hit by jellyfish, loss method
         }
-        if (AncJellythr.intersects(arg0)) {
+       if (collision(AncJellythr, AncPole))  {
             rec.setFill(Color.BLACK);
            fishtime.stop();
            camerastime.stop();
@@ -261,7 +294,7 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
                 checkWin();
                        //makes pole turn black when hit by jellyfish, loss method
         }
-        if (AncJellyfour.intersects(arg0)) {
+        if (collision(AncJellyfour, AncPole)) {
             rec.setFill(Color.BLACK);
            fishtime.stop();
            camerastime.stop();
@@ -270,9 +303,13 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
                    AncPole.setDisable(true);
                   checkWin();           
         }
-        
+    }
+          public boolean collision(AnchorPane block1, AnchorPane block2) {
+        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
+          
     }
         private void moveCamera() {
+           
             AncCamfive.setTranslateX(AncCamfive.getTranslateX() + directionX);
         AncCamfive.setTranslateY(AncCamfive.getTranslateY() + directionY); 
           AncCameig.setTranslateX(AncCameig.getTranslateX() + directionX);
@@ -280,44 +317,69 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
            AncCamsix.setTranslateX(AncCamsix.getTranslateX() + directionX);
         AncCamsix.setTranslateY(AncCamsix.getTranslateY() + directionY); 
            AncCamsev.setTranslateX(AncCamsev.getTranslateX() + directionX);
-        AncCamsev.setTranslateY(AncCamsev.getTranslateY() + directionY); 
-             if (collision(AncCamfive, recWallr)) {
-            directionX=-5;
+        AncCamsev.setTranslateY(AncCamsev.getTranslateY() + directionY);
+       
+        
+          if (collision(AncCamfive, AncPole)) {
+            AncCamone.setVisible(true);
+            AncCamfive.setVisible(false);
+        } //makes camera disappear in water and "reappear" on ice
+        
+        if (collision(AncCamsix, AncPole))  {
+            AncCamtwo.setVisible(true);
+             AncCamsix.setVisible(false);
+//makes camera disappear in water and "reappear" on ice
+        }
+         if (collision(AncCamsev, AncPole))  {
+            AncCamthr.setVisible(true);
+             AncCamsev.setVisible(false);
+             
+//makes camera disappear in water and "reappear" on ice
+        }
+           if (collision(AncCameig, AncPole))  {
+            AncCamfou.setVisible(true);
+             AncCameig.setVisible(false);
+//makes camera disappear in water and "reappear" on ice
+
+        } if (collision(AncCamfive, recWallr)) {
+            directionX=-10;
             directionY=0;
         }
-              if (collision(AncCamfive, recWalll)) {
-            directionX=5;
+               if (collision(AncCamfive, AncPole)) {
+            directionX=10;
             directionY=0;  
         }
               
                      if (collision(AncCamsix, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;   
         }
               if (collision(AncCamsix, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;  
         }
                      if (collision(AncCamsev, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;    
         }
               if (collision(AncCamsev, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;  
         }
             if (collision(AncCameig, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0; 
         }
               if (collision(AncCameig, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;  
         }
         }
+         public boolean collision(Rectangle block1, AnchorPane block2) {
+        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
+    }
             private void moveFish() {
-          directionX=5;
-            directionY=0;
+  
                AncFishten.setTranslateX(AncFishten.getTranslateX() + directionX);
         AncFishten.setTranslateY(AncFishten.getTranslateY() + directionY); 
            AncFishnine.setTranslateX(AncFishnine.getTranslateX() + directionX);
@@ -340,109 +402,111 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
         AncFishone.setTranslateY(AncFishone.getTranslateY() + directionY);
         
              if (collision(AncFishone, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishone, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishtwo, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishtwo, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishthr, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishthr, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishfour, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishfour, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishFive, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishFive, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishSix, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishSix, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishsev, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishsev, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFisheigh, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFisheigh, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishnine, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishnine, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                      if (collision(AncFishten, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
               if (collision(AncFishten, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
             }
+             public boolean collision(AnchorPane block1, Rectangle block2) {
+        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
+    }
             private void moveJellyfish() {
-      directionX=5;
-            directionY=0;
+ 
               AncJellyone.setTranslateX(AncJellyone.getTranslateX() + directionX);
         AncJellyone.setTranslateY(AncJellyone.getTranslateY() + directionY); 
           AncJellytwo.setTranslateX(AncJellytwo.getTranslateX() + directionX);
@@ -453,32 +517,32 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
         AncJellyfour.setTranslateY(AncJellyfour.getTranslateY() + directionY); 
            
         if (collision(AncJellyone, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
              if (collision(AncJellyone, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                     if (collision(AncJellytwo, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
              if (collision(AncJellytwo, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
                     if (collision(AncJellythr, recWallr)) {
-            directionX=-5;
+            directionX=-10;
             directionY=0;
             
         }
              if (collision(AncJellythr, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
@@ -488,16 +552,11 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
             
         }
              if (collision(AncJellyfour, recWalll)) {
-            directionX=5;
+            directionX=10;
             directionY=0;
             
         }
             }
-   
-            public boolean collision(AnchorPane block1, Rectangle block2) {
-        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
-    }
-
             
     void checkWin() throws IOException {
         if (score == 10) {
@@ -525,39 +584,33 @@ AncJellyfour, AncJellyone, AncJellytwo,AncJellythr, AncCamfive, AncCamthr, AncCa
  @FXML
     public void keyPressed(KeyEvent event)  {
         if (event.getCode() == KeyCode.D) {
-            AncPreStart.setVisible(false);
-            directionX=5;
-            directionY=0;
+      
         }
-    
     
             if (event.getCode() == KeyCode.X) {
-            AncPreStart.setVisible(false);
-            directionX=0;
-            directionY=-5;
+     
         }
-    
-        
+       
                 if (event.getCode() == KeyCode.A) {
-            AncPreStart.setVisible(false);
-            directionX=-5;
-            directionY=0;
-        }
-    
         
+        }
+       
                 if (event.getCode() == KeyCode.W) {
-            AncPreStart.setVisible(false);
-            directionX=0;
-            directionY=5;
+  
         }
         }
-        
+   
     @FXML
     void btnPlay(ActionEvent event) {
        //starts timers when you press play
         AncPreStart.setVisible(false);
         AncPole.setDisable(false);
-
+            directionX=-10;
+            directionY=0;
+            run=true;
+           score=0;
+             lblCooler.setText("" + score);
+      
 camerastime.setCycleCount(Timeline.INDEFINITE);
 camerastime.play();
 fishtime.setCycleCount(Timeline.INDEFINITE);
@@ -565,8 +618,8 @@ fishtime.play();
 jellyfishtime.setCycleCount(Timeline.INDEFINITE);
 jellyfishtime.play();
 btnTools.setDisable (false);
-    }
-    
+ 
+    }  
 
     void Winning(String msg) {
       //Comfirmation message when loss or win occurs 
@@ -580,14 +633,13 @@ btnTools.setDisable (false);
         alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree);
         Optional<ButtonType> Result = alert.showAndWait();
     lblWinLoss.setText ("You Won!");
-   
-            
+           
     if (score==10) {wins++;
      lblWins.setText("" + wins);
     }
     
         if (alert.getResult() == buttonTypeOne) {
-            int btnRestart;
+            int btnRest;
             }
             
             if (alert.getResult() == buttonTypeTwo) {
@@ -623,7 +675,6 @@ btnTools.setDisable (false);
         }
     }
 
-
    @Override
      public void initialize(URL url, ResourceBundle rb) {
 btnTools.setDisable (true);
@@ -631,8 +682,6 @@ btnExit.setVisible (false);
 btnRest.setVisible (false);
 AncPreStart.setVisible(true);
 AncPole.setDisable(true);
-     }
-      
-      
+     }     
     }
 // music didn't work out with youtube to mp3 conversion (activated the firewall)

@@ -1,11 +1,15 @@
 
 package ryan.teamproject;
 /*
- Meghan Ryan
- 12/13/2021
- Color Memorization Mini Game
- */
+Meghan Ryan
+12/13/2021
+Color Memorization Mini Game
+*/
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,7 +64,8 @@ public class ColourMemo implements Initializable {
     Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
     MediaPlayer soundPlayer;
-    ArrayList<player> players=new ArrayList();
+    ArrayList<player> players=new ArrayList();//
+    int playercount;
     
     //Code to change the coloured square images.
     void setColours(Image red, Image blue, Image yellow, Image green){
@@ -80,6 +85,7 @@ public class ColourMemo implements Initializable {
             canClick=true;
         }
         else{
+        playSound("/lightsound.mp3");
         switch(squareNum){
         case 1:
             setColours(litRed,blue,yellow,green);
@@ -170,6 +176,7 @@ public class ColourMemo implements Initializable {
     //Code plays when an incorrect part of the pattern is chosen.
     void lose(){
         playSound("/incorrect.mp3");
+        //Score code.
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Scores");
         dialog.setHeaderText(null);
@@ -177,18 +184,21 @@ public class ColourMemo implements Initializable {
         Optional<String> result = dialog.showAndWait();
         String name=dialog.getEditor().getText();
         readPlayers();
-        if (players.contains(name)){
-            if ((patternSize-1)>(players.get(a).getMemoScore())){
-                players.get(a).setMemoScore(patternSize-1);
+        boolean found=false;
+        for (player arraySpot : players) {  
+          if (arraySpot.getName().equals(name)) {
+              if ((patternSize-1)>(arraySpot.getMemoScore())){
+               arraySpot.setMemoScore(patternSize-1);
+               found=true;
             }
-            else{
-                
-            }
-        }
-        else{
+          } 
+   }
+        if (found ==false){
+            playercount=(playercount+1);
             players.add(new player(name,(patternSize-1),0,0));
         }
         writePlayers();
+        //
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
@@ -197,11 +207,46 @@ public class ColourMemo implements Initializable {
     }
     
     void readPlayers(){
-        
+        try {
+            BufferedReader readFile = new BufferedReader(new FileReader("playercount.txt"));
+            playercount = Integer.parseInt(readFile.readLine());
+            readFile.close();
+        } catch (IOException e) {
+        }
+        players.clear();
+        try {
+            BufferedReader readFile = new BufferedReader(new FileReader("scores.txt"));
+           
+            for (int i = 0; i < playercount; i++) {
+               players.add(new player(readFile.readLine(),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine())));
+            }
+            readFile.close();
+        } catch (IOException e) {
+        }
     }
     
     void writePlayers(){
-        
+        try {
+            BufferedWriter outFile = new BufferedWriter(new FileWriter("playercount.txt"));
+            outFile.write(""+playercount);
+            outFile.close();
+        } catch (IOException e) {
+        }
+        try {
+            BufferedWriter outFile = new BufferedWriter(new FileWriter("scores.txt"));
+            for (int i = 0; i < playercount; i++) {
+                outFile.write(players.get(i).getName());
+                outFile.newLine();
+                 outFile.write(""+players.get(i).getMemoScore());
+                outFile.newLine();
+                outFile.write(""+players.get(i).getFishingScore());
+                outFile.newLine();
+                outFile.write(""+players.get(i).getFroggerScore());
+                outFile.newLine();
+            }
+            outFile.close();
+        } catch (IOException e) {
+        }
     }
     
     @FXML
@@ -215,6 +260,7 @@ public class ColourMemo implements Initializable {
     @FXML
     //Opens the game menu screen
     void btnMenu(ActionEvent event)throws IOException {
+        timeline.stop();
         MainApp.setRoot("gamesMenu");
     }
     
@@ -227,7 +273,7 @@ public class ColourMemo implements Initializable {
     double setHeight;
     double setWidth;
       
-    /* Button expands when mouse hovers over, shrinks when mouse stops hovering over it. */
+    // Button expands when mouse hovers over, shrinks when mouse stops hovering over it.
     @FXML
     void btnHover(MouseEvent event) {
         Button button = (Button) event.getSource();
@@ -249,10 +295,10 @@ public class ColourMemo implements Initializable {
         button.toBack();
     }
     
-    /* Image expands when mouse hovers over, shrinks when mouse stops hovering over it. */
+    // Image expands when mouse hovers over, shrinks when mouse stops hovering over it.
     @FXML
     void imgHover(MouseEvent event) {
-        /* Causes Buttons to expand when hovered over. */
+        // Causes Buttons to expand when hovered over.
         if (canClick==true){
         normalSize(imgRed);
         normalSize(imgBlue);
@@ -312,5 +358,6 @@ public class ColourMemo implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         timeline.setCycleCount(Timeline.INDEFINITE);
+        readPlayers();
     }  
 }

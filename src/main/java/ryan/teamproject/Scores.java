@@ -1,9 +1,9 @@
 package ryan.teamproject;
 /*
 Meghan Ryan
-12/15/2021
-Starting title screen to access different parts of the program.
- */
+01/05/2022
+Player Scores Page
+*/
 
 import java.io.IOException;
 import java.net.URL;
@@ -16,39 +16,27 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.control.ListView;
 
-public class FXMLController implements Initializable {
-
-    @FXML
-    //Opens the game menu screen.
-    void btnGames(ActionEvent event)throws IOException {
-        MainApp.setRoot("gamesMenu");
-    }
+public class Scores implements Initializable{
 
     @FXML
-    void btnInfo(ActionEvent event) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Game Info");
-        alert.setHeaderText(null);
-        alert.setContentText("Open the game menu to access 3 different mini games. Open the scores menu to look at player scores.(WIP).");
-        alert.showAndWait();
-    }
+    private Label lblColourMemoScore;
+    @FXML
+    private Label lblFishingScore;
+    @FXML
+    private Label lblFroggerScore;
+    @FXML
+    private ListView lstScores;
 
     @FXML
-    void btnScores(ActionEvent event)throws IOException {
-        MainApp.setRoot("scores");
+    void btnMenu(ActionEvent event)throws IOException {
+        MainApp.setRoot("primary");
     }
-    
-    @FXML
-    //Exits the program.
-    void btnExit(ActionEvent event) {
-        System.exit(0);
-    }
-    
+
+    // Button expands when mouse hovers over, shrinks when mouse stops hovering over it.
     double setHeight;
     double setWidth;
-    
-    //Button expands when mouse hovers over, shrinks when mouse stops hovering over it.
     @FXML
     void btnHover(MouseEvent event) {
         Button button = (Button) event.getSource();
@@ -69,9 +57,9 @@ public class FXMLController implements Initializable {
         button.setTranslateY(0);
         button.toBack();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+        
+    }
 }

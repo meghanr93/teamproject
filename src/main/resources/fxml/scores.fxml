@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ryan.teamproject.Scores">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ryan.teamproject.Scores">
    <children>
-      <ListView fx:id="lstScores" layoutX="60.0" layoutY="125.0" prefHeight="350.0" prefWidth="300.0" />
+      <ListView fx:id="lstScores" layoutX="60.0" layoutY="125.0" onMouseClicked="#lstClick" prefHeight="350.0" prefWidth="300.0" />
       <Label layoutX="134.0" layoutY="44.0" text="Player Scores" textFill="WHITE">
          <font>
             <Font size="24.0" />

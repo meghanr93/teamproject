@@ -117,18 +117,18 @@ public class ColourMemo implements Initializable {
     //Makes an addition to the colour pattern.
     void makePattern(){
         int rand = ThreadLocalRandom.current().nextInt(1,4+1);
-            patternNum=0;
-            pattern.add(rand);
-            patternSize = pattern.size();
-            lblStreak.setText(""+(patternSize-1));
-            timeline.play();
+        patternNum=0;
+        pattern.add(rand);
+        patternSize = pattern.size();
+        lblStreak.setText(""+(patternSize-1));
+        timeline.play();
     }
     
     //Gets the colour pattern.
     void getPattern(){
         patternSize=pattern.size();
         if (patternNum!=patternSize){
-        squareNum=pattern.get(patternNum);
+            squareNum=pattern.get(patternNum);
         }
     }
     
@@ -136,40 +136,40 @@ public class ColourMemo implements Initializable {
     //Code plays when player clicks a square, testing if they are correctly following the pattern.
     void imgSquare (MouseEvent event){
         if (canClick==true){
-        ImageView square = (ImageView) event.getSource();
-        square.setFitHeight(setHeight);
-        square.setFitWidth(setWidth);
-        square.setTranslateX(0);
-        square.setTranslateY(0);
-        square.toBack();
-        if (square==imgRed){
-            imgRed.setImage(red);           
-        }
-        else if (square==imgBlue){            
-            imgBlue.setImage(blue);
-        }
-        else if (square==imgYellow){           
-            imgYellow.setImage(yellow);
-        }
-        else if (square==imgGreen){
-            imgGreen.setImage(green);
-        }
-        int squareClicked=Integer.parseInt(square.getAccessibleText());
-        getPattern();
-        correct=squareClicked==squareNum;
-        if (correct==true){
-            playSound("/correct.mp3");
-            if (patternNum==patternSize-1){
-                makePattern();
-                canClick=false;
+            ImageView square = (ImageView) event.getSource();
+            square.setFitHeight(setHeight);
+            square.setFitWidth(setWidth);
+            square.setTranslateX(0);
+            square.setTranslateY(0);
+            square.toBack();
+            if (square==imgRed){
+                imgRed.setImage(red);           
+            }
+            else if (square==imgBlue){            
+                imgBlue.setImage(blue);
+            }
+            else if (square==imgYellow){           
+                imgYellow.setImage(yellow);
+            }
+            else if (square==imgGreen){
+                imgGreen.setImage(green);
+            }
+            int squareClicked=Integer.parseInt(square.getAccessibleText());
+            getPattern();
+            correct=squareClicked==squareNum;
+            if (correct==true){
+                playSound("/correct.mp3");
+                if (patternNum==patternSize-1){
+                    makePattern();
+                    canClick=false;
+                }
+                else {
+                    patternNum=patternNum+1;
+                }
             }
             else {
-                patternNum=patternNum+1;
+                lose();
             }
-        }
-        else {
-            lose();
-        }
         }
     }
     
@@ -186,14 +186,14 @@ public class ColourMemo implements Initializable {
         readPlayers();
         boolean found=false;
         for (player arraySpot : players) {  
-          if (arraySpot.getName().equals(name)) {
-              if ((patternSize-1)>(arraySpot.getMemoScore())){
-               arraySpot.setMemoScore(patternSize-1);
-               found=true;
-            }
-          } 
-   }
-        if (found ==false){
+            if (arraySpot.getName().equals(name)) {
+                if ((patternSize-1)>(arraySpot.getMemoScore())){
+                    arraySpot.setMemoScore(patternSize-1);
+                    found=true;
+                }
+            } 
+        }
+        if (found==false){
             playercount=(playercount+1);
             players.add(new player(name,(patternSize-1),0,0));
         }
@@ -215,10 +215,9 @@ public class ColourMemo implements Initializable {
         }
         players.clear();
         try {
-            BufferedReader readFile = new BufferedReader(new FileReader("scores.txt"));
-           
+            BufferedReader readFile = new BufferedReader(new FileReader("scores.txt"));           
             for (int i = 0; i < playercount; i++) {
-               players.add(new player(readFile.readLine(),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine())));
+                players.add(new player(readFile.readLine(),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine())));
             }
             readFile.close();
         } catch (IOException e) {
@@ -300,18 +299,18 @@ public class ColourMemo implements Initializable {
     void imgHover(MouseEvent event) {
         // Causes Buttons to expand when hovered over.
         if (canClick==true){
-        normalSize(imgRed);
-        normalSize(imgBlue);
-        normalSize(imgYellow);
-        normalSize(imgGreen);
-        ImageView imageView = (ImageView) event.getSource();
-        setHeight=imageView.getFitHeight();
-        setWidth=imageView.getFitWidth();
-        imageView.setFitHeight(setHeight*1.1);
-        imageView.setFitWidth(setWidth*1.1);
-        imageView.setTranslateX((setWidth-setWidth*1.1)/2);
-        imageView.setTranslateY((setHeight-setHeight*1.1)/2);
-        imageView.toFront();   
+            normalSize(imgRed);
+            normalSize(imgBlue);
+            normalSize(imgYellow);
+            normalSize(imgGreen);
+            ImageView imageView = (ImageView) event.getSource();
+            setHeight=imageView.getFitHeight();
+            setWidth=imageView.getFitWidth();
+            imageView.setFitHeight(setHeight*1.1);
+            imageView.setFitWidth(setWidth*1.1);
+            imageView.setTranslateX((setWidth-setWidth*1.1)/2);
+            imageView.setTranslateY((setHeight-setHeight*1.1)/2);
+            imageView.toFront();   
         if (imageView==imgRed){
             imgRed.setImage(litRed);           
         }
@@ -330,12 +329,12 @@ public class ColourMemo implements Initializable {
     void imgUnhover(MouseEvent event) {
         /* Causes expanded Buttons to shrink back to original size when not hovered over. */
         if (canClick==true){
-        ImageView imageView = (ImageView) event.getSource();
-        imageView.setFitHeight(setHeight);
-        imageView.setFitWidth(setWidth);
-        imageView.setTranslateX(0);
-        imageView.setTranslateY(0);
-        imageView.toBack();
+            ImageView imageView = (ImageView) event.getSource();
+            imageView.setFitHeight(setHeight);
+            imageView.setFitWidth(setWidth);
+            imageView.setTranslateX(0);
+            imageView.setTranslateY(0);
+            imageView.toBack();
         if (imageView==imgRed){
             imgRed.setImage(red);           
         }

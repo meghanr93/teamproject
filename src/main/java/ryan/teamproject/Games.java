@@ -26,7 +26,7 @@ public class Games {
     }
     @FXML
     void imgFrogger(MouseEvent event)throws IOException {
-
+        MainApp.setRoot("Frogger");
     }
 
         
@@ -56,7 +56,7 @@ public class Games {
     }
     @FXML
     void btnFroggerInfo(ActionEvent event) {
-        gameInfo("A frogger like game. Get to the other end of the screen, landing on platforms and avoiding obstacles.");
+        gameInfo("Press the Q, W, E, or R button to move the frog to a corresponding spot while avoiding getting tangled in the incoming seaweed. Go as far as you can!");
     }
     
     double setHeight;

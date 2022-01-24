@@ -52,13 +52,14 @@ public class Games {
     }
     @FXML
     void btnFishingInfo(ActionEvent event) {
-        gameInfo("A fishing game. Move your mouse up and down to move the hook, catch fish and bring them back up to you while avoiding hazards.");
+        gameInfo("A fishing game. Catch fish and bring them back up to you while avoiding hazards.");
     }
     @FXML
     void btnFroggerInfo(ActionEvent event) {
         gameInfo("Press the Q, W, E, or R button to move the frog to a corresponding spot while avoiding getting tangled in the incoming seaweed. Go as far as you can!");
     }
     
+    //Expand buttons/images when mouse hovers over, minimizes when the mouse stops hovering over it.
     double setHeight;
     double setWidth;
     

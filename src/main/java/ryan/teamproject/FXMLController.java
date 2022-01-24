@@ -25,12 +25,13 @@ public class FXMLController implements Initializable {
         MainApp.setRoot("gamesMenu");
     }
 
+    //Info button to explain the program.
     @FXML
     void btnInfo(ActionEvent event) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Info");
         alert.setHeaderText(null);
-        alert.setContentText("Open the game menu to access 3 different mini games. Open the scores menu to look at player scores.(WIP).");
+        alert.setContentText("Open the game menu to access 3 different mini games.");
         alert.showAndWait();
     }
 
@@ -72,6 +73,6 @@ public class FXMLController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    
     }    
 }

@@ -31,10 +31,7 @@ import javafx.scene.control.TextInputDialog;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
-/**
- *
- * @author meghanr93
- */
+
 public class Frogger implements Initializable{
     
     @FXML
@@ -71,6 +68,7 @@ public class Frogger implements Initializable{
     double seaweedSpeed=5;
     Timeline timeline = new Timeline(new KeyFrame(Duration.millis(30), ae -> moveSeaweed()));
     
+    //Moves the seaweed obstacles
     void moveSeaweed(){
         if (rand!=1){
             lblSeaweed1.setTranslateY((lblSeaweed1.getTranslateY())+seaweedSpeed);
@@ -104,6 +102,7 @@ public class Frogger implements Initializable{
         }
     }
     
+    //Lose code if the character hits an obstacle
     void lose(){
         lblSeaweed1.setTranslateY(0);
         lblSeaweed2.setTranslateY(0);
@@ -127,6 +126,7 @@ public class Frogger implements Initializable{
         playSound("/sad_trombone.mp3");
     }   
     
+    //Collision code for when the obstacles reach the end of the game screen
     void collisionTwoCode(){
         lblSeaweed1.setTranslateY(0);
         lblSeaweed2.setTranslateY(0);
@@ -179,11 +179,13 @@ public class Frogger implements Initializable{
         }
     }*/
     
+    //Button to go back to menu.
     @FXML
     void btnMenu(ActionEvent event)throws IOException {
         MainApp.setRoot("primary");
     }
     
+    //Key press code to move the character.
     public void keyPressed(KeyEvent event){
         if ((started==true)&&(event.getCode() == KeyCode.Q)) {
             imgFrog.setLayoutX(106);
@@ -199,6 +201,7 @@ public class Frogger implements Initializable{
         }
     }
     
+    //Collisions.
     public boolean collision(ImageView block1, Label block2) {
     //returns true if the areas intersect, false if they dont
     return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
@@ -209,6 +212,7 @@ public class Frogger implements Initializable{
     return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
     
+    //Starts the game.
     @FXML
     void btnStartClick(ActionEvent event) {
         started=true;

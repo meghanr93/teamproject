@@ -56,21 +56,21 @@ public class Frogger implements Initializable{
     boolean started=false;
     int score=0;
     int rand;
-    double seaweedSpeed=40;
-    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(seaweedSpeed), ae -> moveSeaweed()));
+    double seaweedSpeed=5;
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(30), ae -> moveSeaweed()));
     
     void moveSeaweed(){
         if (rand!=1){
-            lblSeaweed1.setTranslateY((lblSeaweed1.getTranslateY())+5);
+            lblSeaweed1.setTranslateY((lblSeaweed1.getTranslateY())+seaweedSpeed);
         }
         if (rand!=2){
-            lblSeaweed2.setTranslateY((lblSeaweed2.getTranslateY())+5);
+            lblSeaweed2.setTranslateY((lblSeaweed2.getTranslateY())+seaweedSpeed);
         }
         if (rand!=3){
-            lblSeaweed3.setTranslateY((lblSeaweed3.getTranslateY())+5);
+            lblSeaweed3.setTranslateY((lblSeaweed3.getTranslateY())+seaweedSpeed);
         }
         if (rand!=4){
-            lblSeaweed4.setTranslateY((lblSeaweed4.getTranslateY())+5);
+            lblSeaweed4.setTranslateY((lblSeaweed4.getTranslateY())+seaweedSpeed);
         }
         if (collisionTwo(lblSeaweed1,lblInvisBox)==true){
             collisionTwoCode();
@@ -97,7 +97,7 @@ public class Frogger implements Initializable{
         lblSeaweed2.setTranslateY(0);
         lblSeaweed3.setTranslateY(0);
         lblSeaweed4.setTranslateY(0);
-        seaweedSpeed=40;
+        seaweedSpeed=5;
         //score
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Scores");
@@ -105,7 +105,7 @@ public class Frogger implements Initializable{
         dialog.setContentText("Please enter your name:");
         Optional<String> result = dialog.showAndWait();
         String name=dialog.getEditor().getText();
-        //readPlayers();
+        readPlayers();
         //
         score=0;
         lblScore.setText(""+score);
@@ -122,12 +122,12 @@ public class Frogger implements Initializable{
         rand = ThreadLocalRandom.current().nextInt(1,4+1);
         score=score+1;
         lblScore.setText(""+score);
-        if (seaweedSpeed!=5){
-        seaweedSpeed=seaweedSpeed-1;
+        if (seaweedSpeed!=20){
+        seaweedSpeed=seaweedSpeed+0.5;
         }
     }
     
-    /*void readPlayers(){
+    void readPlayers(){
         try {
             BufferedReader readFile = new BufferedReader(new FileReader("playercount.txt"));
             playercount = Integer.parseInt(readFile.readLine());
@@ -143,7 +143,7 @@ public class Frogger implements Initializable{
             readFile.close();
         } catch (IOException e) {
         }
-    }*/
+    }
     
     @FXML
     void btnMenu(ActionEvent event)throws IOException {

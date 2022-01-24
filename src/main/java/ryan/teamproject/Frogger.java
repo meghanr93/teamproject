@@ -28,6 +28,8 @@ import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 /**
  *
@@ -54,6 +56,14 @@ public class Frogger implements Initializable{
     
     ArrayList<player> players=new ArrayList();//
     int playercount;
+    
+    MediaPlayer soundPlayer;
+    
+    //Plays a sound
+    void playSound(String soundname){    
+        soundPlayer = new MediaPlayer((new Media(getClass().getResource(soundname).toString())));
+        soundPlayer.play();
+    }
     
     boolean started=false;
     int score=0;
@@ -100,20 +110,21 @@ public class Frogger implements Initializable{
         lblSeaweed3.setTranslateY(0);
         lblSeaweed4.setTranslateY(0);
         seaweedSpeed=5;
-        //score
-        readPlayers();
+        /*score
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Scores");
         dialog.setHeaderText(null);
         dialog.setContentText("Please enter your name:");
         Optional<String> result = dialog.showAndWait();
         String name=dialog.getEditor().getText();
-        //
+        readPlayers();
+        */
         score=0;
         lblScore.setText(""+score);
         timeline.stop();
         started=false;
         btnStart.setDisable(false);
+        playSound("/sad_trombone.mp3");
     }   
     
     void collisionTwoCode(){
@@ -127,9 +138,10 @@ public class Frogger implements Initializable{
         if (seaweedSpeed!=20){
         seaweedSpeed=seaweedSpeed+0.5;
         }
+        playSound("/coin.mp3");
     }
     
-    void readPlayers(){
+    /*void readPlayers(){
         try {
             BufferedReader readFile = new BufferedReader(new FileReader("playercount.txt"));
             playercount = Integer.parseInt(readFile.readLine());
@@ -165,7 +177,7 @@ public class Frogger implements Initializable{
             }
         } catch (IOException e) {
         }
-    }
+    }*/
     
     @FXML
     void btnMenu(ActionEvent event)throws IOException {

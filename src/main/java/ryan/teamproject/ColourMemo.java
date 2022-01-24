@@ -6,6 +6,8 @@ Meghan Ryan
 Color Memorization Mini Game
 */
 
+//Tried to implement score code but could not get it to function.
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -64,8 +66,8 @@ public class ColourMemo implements Initializable {
     Image litYellow = new Image(getClass().getResource("/yellowlit.png").toString());
     Image litGreen = new Image(getClass().getResource("/greenlit.png").toString());
     MediaPlayer soundPlayer;
-    ArrayList<player> players=new ArrayList();//
-    int playercount;
+    //ArrayList<player> players=new ArrayList();//
+    //int playercount;
     
     //Code to change the coloured square images.
     void setColours(Image red, Image blue, Image yellow, Image green){
@@ -176,7 +178,7 @@ public class ColourMemo implements Initializable {
     //Code plays when an incorrect part of the pattern is chosen.
     void lose(){
         playSound("/incorrect.mp3");
-        //Score code.
+        /*Score code.
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Scores");
         dialog.setHeaderText(null);
@@ -198,14 +200,15 @@ public class ColourMemo implements Initializable {
             players.add(new player(name,(patternSize-1),0,0));
         }
         writePlayers();
-        //
+        */
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
         lblStreak.setText("0");
         canClick=false;
     }
-    
+  
+    /*Read and Write score.
     void readPlayers(){
         try {
             BufferedReader readFile = new BufferedReader(new FileReader("playercount.txt"));
@@ -243,6 +246,7 @@ public class ColourMemo implements Initializable {
         } catch (IOException e) {
         }
     }
+    */
     
     @FXML
     //Creates the first part of the colour pattern and starts the game.
@@ -353,6 +357,6 @@ public class ColourMemo implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         timeline.setCycleCount(Timeline.INDEFINITE);
-        readPlayers();
+        //readPlayers();
     }  
 }

@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: grey;" stylesheets="@../styles/Styles.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ryan.teamproject.Games">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="37.0" layoutY="225.0" onMouseClicked="#imgColourMemo" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="149.0" layoutX="40.0" layoutY="225.0" onMouseClicked="#imgColourMemo" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../red.png" />
+            <Image url="@../colour_memo_screen.PNG" />
          </image>
       </ImageView>
       <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="225.0" layoutY="225.0" onMouseClicked="#imgFishing" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
@@ -19,9 +18,9 @@
             <Image url="@../blue.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="408.0" layoutY="225.0" onMouseClicked="#imgFrogger" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="409.0" layoutY="225.0" onMouseClicked="#imgFrogger" onMouseEntered="#imgHover" onMouseExited="#imgUnhover" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../green.png" />
+            <Image url="@../frogger_screen.PNG" />
          </image>
       </ImageView>
       <Button layoutX="245.0" layoutY="511.0" mnemonicParsing="false" onAction="#btnMenu" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="45.0" prefWidth="110.0" text="Title Screen">

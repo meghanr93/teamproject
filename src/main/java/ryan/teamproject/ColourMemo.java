@@ -225,25 +225,21 @@ public class ColourMemo implements Initializable {
     }
     
     void writePlayers(){
-        try {
-            BufferedWriter outFile = new BufferedWriter(new FileWriter("playercount.txt"));
+        try (BufferedWriter outFile = new BufferedWriter(new FileWriter("playercount.txt"))) {
             outFile.write(""+playercount);
-            outFile.close();
         } catch (IOException e) {
         }
-        try {
-            BufferedWriter outFile = new BufferedWriter(new FileWriter("scores.txt"));
+        try (BufferedWriter outFile = new BufferedWriter(new FileWriter("scores.txt"))) {
             for (int i = 0; i < playercount; i++) {
                 outFile.write(players.get(i).getName());
                 outFile.newLine();
-                 outFile.write(""+players.get(i).getMemoScore());
+                outFile.write(""+players.get(i).getMemoScore());
                 outFile.newLine();
                 outFile.write(""+players.get(i).getFishingScore());
                 outFile.newLine();
                 outFile.write(""+players.get(i).getFroggerScore());
                 outFile.newLine();
             }
-            outFile.close();
         } catch (IOException e) {
         }
     }

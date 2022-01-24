@@ -6,7 +6,9 @@ Game with a frog character where you have to press keys to avoid obstacles.
 package ryan.teamproject;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -99,13 +101,13 @@ public class Frogger implements Initializable{
         lblSeaweed4.setTranslateY(0);
         seaweedSpeed=5;
         //score
+        readPlayers();
         TextInputDialog dialog = new TextInputDialog("");
         dialog.setTitle("Scores");
         dialog.setHeaderText(null);
         dialog.setContentText("Please enter your name:");
         Optional<String> result = dialog.showAndWait();
         String name=dialog.getEditor().getText();
-        readPlayers();
         //
         score=0;
         lblScore.setText(""+score);
@@ -141,6 +143,26 @@ public class Frogger implements Initializable{
                 players.add(new player(readFile.readLine(),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine()),Integer.parseInt(readFile.readLine())));
             }
             readFile.close();
+        } catch (IOException e) {
+        }
+    }
+    
+    void writePlayers(){
+        try (BufferedWriter outFile = new BufferedWriter(new FileWriter("playercount.txt"))) {
+            outFile.write(""+playercount);
+        } catch (IOException e) {
+        }
+        try (BufferedWriter outFile = new BufferedWriter(new FileWriter("scores.txt"))) {
+            for (int i = 0; i < playercount; i++) {
+                outFile.write(players.get(i).getName());
+                outFile.newLine();
+                outFile.write(""+players.get(i).getMemoScore());
+                outFile.newLine();
+                outFile.write(""+players.get(i).getFishingScore());
+                outFile.newLine();
+                outFile.write(""+players.get(i).getFroggerScore());
+                outFile.newLine();
+            }
         } catch (IOException e) {
         }
     }

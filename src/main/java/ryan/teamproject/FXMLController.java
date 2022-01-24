@@ -4,10 +4,11 @@ package ryan.teamproject;
 Charley Treen
 December 2021 + January 2022
 A one player fishing game.
-Collect fish and avoid jellyfish and cameras.
-Attached to a colour memory game and frogger game in the Meghan and Charleys Arcade.
- */
+Player uses fishing pole ("AncPole") to collect fish and avoid jellyfish. 
+Cameras are collected on ice with no value.
 
+Attached to a colour memory game and frogger game.
+ */
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -33,9 +34,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import java.io.IOException;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import static ryan.teamproject.MainApp.setRoot;
 //import static ryan.teamproject.MainApp.setRoot;
 
 public class FXMLController implements Initializable {
@@ -43,49 +46,68 @@ public class FXMLController implements Initializable {
     boolean run = false;
     int directionY = 0;
     int directionX = 0;
- 
-    Timeline camerastime = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveCamera()));
-    Timeline fishtime = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveFish()));
-    Timeline jellyfishtime = new Timeline(new KeyFrame(Duration.millis(50), ae -> moveJellyfish()));
+//80, 80 and 120 are the speeds of the objects
+    Timeline camerastime = new Timeline(new KeyFrame(Duration.millis(80), ae -> moveCamera()));
+    Timeline fishtime = new Timeline(new KeyFrame(Duration.millis(80), ae -> moveFish()));
+    Timeline jellyfishtime = new Timeline(new KeyFrame(Duration.millis(120), ae -> moveJellyfish()));
+
     @FXML
     private AnchorPane AncFishone, AncFishtwo, AncFishthr, AncFishfour, AncFishFive, AncFishten, AncFishnine, AncFishsev, AncFisheigh, AncFishSix,
             AncJellyfour, AncJellyone, AncJellytwo, AncJellythr, AncCamfive, AncCamthr, AncCamtwo, AncCamfou, AncCamone, AncCameig, AncCamsev, AncCamsix, AncPole, AncPreStart;
 
     @FXML
     private Rectangle RecFishpole;
-    @FXML
-    private Label lblWins;
 
     @FXML
-    private Rectangle recWallr, recWallt, recWalll, recWallb, recWallpr, recWallpl;
+    private Rectangle recWallr, recWallt, recWalll, recWallb;
 
     @FXML
-    private Label lblCooler, lblWinLoss;
+    private Label lblCooler, lblWinLoss, lblWins;
 
     @FXML
     private Arc ArcFishnin, ArcFishtwen, ArcFishfou, ArcFishsixt, ArcFisheighte, ArcFishele, ArcFishfif, ArcFishthi, ArcFishseve, ArcFishtwe;
 
     @FXML
-    private Button btnTools, btnExit, btnRest;
-
+    private Button btnTools, btnExit, btnRest, btnPlay, btnExitga, btnPlayAgain;
+//arrays
     AnchorPane fish[];
     AnchorPane jellyfish[];
     AnchorPane cameras[];
+    //score and win count
     int score = 0;
     int wins = 0;
-
-    @FXML
-    void btnExit(ActionEvent event) {
-        System.exit(0);
-    }
+    //movement for objects
+    int fish1X = -10;
+    int fish2X = -10;
+    int fish3X = -10;
+    int fish4X = -10;
+    int fish5X = -10;
+    int fish6X = -10;
+    int fish7X = -10;
+    int fish8X = -10;
+    int fish9X = -10;
+    int fish10X = -10;
+    int camera5X = -10;
+    int camera6X = -10;
+    int camera7X = -10;
+    int camera8X = -10;
+    int jellyfish1X = -10;
+    int jellyfish2X = -10;
+    int jellyfish3X = -10;
+    int jellyfish4X = -10;
 
     @FXML
     void btnRest(ActionEvent event) {
+        //reset method
+        //sets objects visible and invisible
         AncPreStart.setVisible(true);
         AncPole.setDisable(true);
         btnTools.setDisable(false);
         btnExit.setVisible(false);
         btnRest.setVisible(false);
+        btnPlayAgain.setVisible(false);
+        btnPlay.setVisible(true);
+        //timers of objects
         camerastime.setCycleCount(Timeline.INDEFINITE);
         camerastime.stop();
         fishtime.setCycleCount(Timeline.INDEFINITE);
@@ -99,9 +121,83 @@ public class FXMLController implements Initializable {
         for (AnchorPane name : fish) {
             name.setDisable(true);
         }
-        
+
+        /* creates an array of all the fish listed, makes them all 
+      identified as "jellyfish" */
+        for (AnchorPane name : jellyfish) {
+            name.setDisable(true);
+        }
+
+        /* creates an array of all the cameras listed, makes them all 
+      identified as "cameras" */
+        for (AnchorPane name : cameras) {
+            name.setDisable(true);
+        }
+    }
+
+    @FXML
+    void btnPlayAgain(ActionEvent event) {
+        //play again method
+        //sets objects visible and invisible
+        ArcFishnin.setVisible(false);
+        ArcFishtwen.setVisible(false);
+        ArcFishfou.setVisible(false);
+        ArcFishsixt.setVisible(false);
+        ArcFisheighte.setVisible(false);
+        ArcFishele.setVisible(false);
+        ArcFishfif.setVisible(false);
+        ArcFishthi.setVisible(false);
+        ArcFishseve.setVisible(false);
+        ArcFishtwe.setVisible(false);
+        AncCamthr.setVisible(false);
+        AncCamtwo.setVisible(false);
+        AncCamfou.setVisible(false);
+        AncCamone.setVisible(false);
+        ArcFishnin.setVisible(false);
+        AncFishone.setVisible(true);
+        AncFishtwo.setVisible(true);
+        AncFishthr.setVisible(true);
+        AncFishfour.setVisible(true);
+        AncFishFive.setVisible(true);
+        AncFishSix.setVisible(true);
+        AncFishsev.setVisible(true);
+        AncFisheigh.setVisible(true);
+        AncFishnine.setVisible(true);
+        AncFishten.setVisible(true);
+        AncCamfive.setVisible(true);
+        AncCamsix.setVisible(true);
+        AncCamsev.setVisible(true);
+        AncCameig.setVisible(true);
+        AncPreStart.setVisible(false);
+        AncPole.setDisable(false);
+        btnRest.setVisible(false);
+        btnExit.setVisible(false);
+        btnTools.setVisible(true);
+        //runs timer
+        run = true;
+        //sets score back to zero for new game
+        score = 0;
+        lblCooler.setText("" + score);
+        //timers length of time to run
+        camerastime.setCycleCount(Timeline.INDEFINITE);
+        camerastime.play();
+        fishtime.setCycleCount(Timeline.INDEFINITE);
+        fishtime.play();
+        jellyfishtime.setCycleCount(Timeline.INDEFINITE);
+        jellyfishtime.play();
+        //allows tools to be pressed for exit and restart buttons
+        btnTools.setDisable(false);
+        //turns pole red for restart (not being struck by jellyfish)
+        RecFishpole.setFill(Color.RED);
+        AncPole.requestFocus();
         /* creates an array of all the fish listed, makes them all 
       identified as "fish" */
+        for (AnchorPane name : fish) {
+            name.setDisable(true);
+        }
+
+        /* creates an array of all the fish listed, makes them all 
+      identified as "jellyfish" */
         for (AnchorPane name : jellyfish) {
             name.setDisable(true);
         }
@@ -121,246 +217,277 @@ public class FXMLController implements Initializable {
 
     @FXML
     void btnExitga(ActionEvent event) throws IOException {
-        MainApp.setRoot("start");
-        wins = 0;
+        //sends to exit screen
+      MainApp.setRoot("endscreen");
     }
 
     @FXML
     void AncPole(KeyEvent event) throws IOException {
-        AncPole.setTranslateX(AncPole.getTranslateX() + directionX);
-        AncPole.setTranslateY(AncPole.getTranslateY() + directionY);
-
-
-        if (event.getCode() == KeyCode.D) {
-            directionX = 10;
-            directionY = 0;
-        }
+        directionX = 0;
+        directionY = 0;
 
         if (event.getCode() == KeyCode.S) {
+            //moves control down
             directionX = 0;
             directionY = 10;
         }
 
-        if (event.getCode() == KeyCode.A) {
-            directionX = -10;
-            directionY = 0;
-        }
-
         if (event.getCode() == KeyCode.W) {
+            //moves control up
             directionX = 0;
             directionY = -10;
         }
-        if (collision(recWallpr, AncPole)) {
-               AncPole.setTranslateX(AncPole.getTranslateX() - directionX);
-        AncPole.setTranslateY(AncPole.getTranslateY() - directionY);
-        }
-        if (collision(recWallpl, AncPole)) {
-              AncPole.setTranslateX(AncPole.getTranslateX() - directionX);
-        AncPole.setTranslateY(AncPole.getTranslateY() - directionY);
-        }
+
+        AncPole.setTranslateY(AncPole.getTranslateY() + directionY);
 
         if (collision(recWallt, AncPole)) {
-            AncPole.setTranslateX(AncPole.getTranslateX() - directionX);
-        AncPole.setTranslateY(AncPole.getTranslateY() - directionY);
+            AncPole.setTranslateY(AncPole.getTranslateY() - directionY);
         }
 
         if (collision(recWallb, AncPole)) {
-              AncPole.setTranslateX(AncPole.getTranslateX() - directionX);
-        AncPole.setTranslateY(AncPole.getTranslateY() - directionY);
+            AncPole.setTranslateY(AncPole.getTranslateY() - directionY);
         }
 
-        if (collision(AncFishone, AncPole)) {
+        if (collision(AncFishone, AncPole) && AncFishone.isVisible()) {
             ArcFishnin.setVisible(true);
             AncFishone.setVisible(false);
-//makes fish disappear in water and "reappear" on ice
+            //makes fish disappear in water and "reappear" on ice
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
         }
-        if (collision(AncFishtwo, AncPole)) {
+
+        if (collision(AncFishtwo, AncPole) && AncFishtwo.isVisible()) {
             ArcFishtwen.setVisible(true);
             AncFishtwo.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishthr, AncPole)) {
+
+        if (collision(AncFishthr, AncPole) && AncFishthr.isVisible()) {
             ArcFishele.setVisible(true);
             AncFishthr.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishfour, AncPole)) {
+
+        if (collision(AncFishfour, AncPole) && AncFishfour.isVisible()) {
             ArcFisheighte.setVisible(true);
             AncFishfour.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishFive, AncPole)) {
+
+        if (collision(AncFishFive, AncPole) && AncFishFive.isVisible()) {
             ArcFishtwe.setVisible(true);
             AncFishFive.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishSix, AncPole)) {
+
+        if (collision(AncFishSix, AncPole) && AncFishSix.isVisible()) {
             ArcFishsixt.setVisible(true);
             AncFishSix.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishsev, AncPole)) {
+
+        if (collision(AncFishsev, AncPole) && AncFishsev.isVisible()) {
             ArcFishseve.setVisible(true);
             AncFishsev.setVisible(false);
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFisheigh, AncPole)) {
+
+        if (collision(AncFisheigh, AncPole) && AncFisheigh.isVisible()) {
             ArcFishfif.setVisible(true);
             AncFisheigh.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishnine, AncPole)) {
+
+        if (collision(AncFishnine, AncPole) && AncFishnine.isVisible()) {
             ArcFishfou.setVisible(true);
             AncFishnine.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-        if (collision(AncFishten, AncPole)) {
+
+        if (collision(AncFishten, AncPole) && AncFishten.isVisible()) {
             ArcFishthi.setVisible(true);
             AncFishten.setVisible(false);
+            //adds fish number +1
             score++;
             lblCooler.setText("" + score);
+            //checks if fish is 10
             checkWin();
             //makes fish disappear in water and "reappear" on ice
         }
-
-        if (collision(AncJellyone, AncPole)) {
-            RecFishpole.setFill(Color.BLACK);
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            AncPole.setDisable(true);
-            lblWinLoss.setText("You Lost!");
-            checkWin();
-            //makes pole turn black when hit by jellyfish, loss method
-        }
-        if (collision(AncJellytwo, AncPole)) {
-            RecFishpole.setFill(Color.BLACK);
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            lblWinLoss.setText("You Lost!");
-            AncPole.setDisable(true);
-            checkWin();
-            //makes pole turn black when hit by jellyfish, loss method
-        }
-        if (collision(AncJellythr, AncPole)) {
-        RecFishpole.setFill(Color.BLACK);
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            lblWinLoss.setText("You Lost!");
-            AncPole.setDisable(true);
-            checkWin();
-            //makes pole turn black when hit by jellyfish, loss method
-        }
-        if (collision(AncJellyfour, AncPole)) {
-         RecFishpole.setFill(Color.BLACK);
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            lblWinLoss.setText("You Lost!");
-            AncPole.setDisable(true);
-            checkWin();
-        }
-    }
-
-    public boolean collision(AnchorPane block1, AnchorPane block2) {
-        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
-
-    }
-
-    private void moveCamera() {
-
-        AncCamfive.setTranslateX(AncCamfive.getTranslateX() + directionX);
-        AncCamfive.setTranslateY(AncCamfive.getTranslateY() + directionY);
-        AncCameig.setTranslateX(AncCameig.getTranslateX() + directionX);
-        AncCameig.setTranslateY(AncCameig.getTranslateY() + directionY);
-        AncCamsix.setTranslateX(AncCamsix.getTranslateX() + directionX);
-        AncCamsix.setTranslateY(AncCamsix.getTranslateY() + directionY);
-        AncCamsev.setTranslateX(AncCamsev.getTranslateX() + directionX);
-        AncCamsev.setTranslateY(AncCamsev.getTranslateY() + directionY);
-
         if (collision(AncCamfive, AncPole)) {
+
             AncCamone.setVisible(true);
             AncCamfive.setVisible(false);
         } //makes camera disappear in water and "reappear" on ice
 
         if (collision(AncCamsix, AncPole)) {
+
             AncCamtwo.setVisible(true);
             AncCamsix.setVisible(false);
 //makes camera disappear in water and "reappear" on ice
         }
         if (collision(AncCamsev, AncPole)) {
+
             AncCamthr.setVisible(true);
             AncCamsev.setVisible(false);
 
 //makes camera disappear in water and "reappear" on ice
         }
         if (collision(AncCameig, AncPole)) {
+
             AncCamfou.setVisible(true);
             AncCameig.setVisible(false);
 //makes camera disappear in water and "reappear" on ice
 
         }
-        if (collision(AncCamfive, recWallr)) {
-              AncCamfive.setTranslateX(AncCamfive.getTranslateX() - directionX);
-        AncCamfive.setTranslateY(AncCamfive.getTranslateY() - directionY);
+
+        if (collision(AncJellyone, AncPole)) {
+            //makes fishing pole strcuk by jellyfish
+            RecFishpole.setFill(Color.BLACK);
+            //stops timers
+            fishtime.stop();
+            camerastime.stop();
+            jellyfishtime.stop();
+            //makes control not moveable
+            AncPole.setDisable(true);
+            lblWinLoss.setText("You Lost!");
+            AncPreStart.setVisible(true);
+            btnPlay.setVisible(false);
+            btnPlayAgain.setVisible(true);
+            btnPlay.setVisible(false);
+
+            //makes pole turn black when hit by jellyfish, loss method
         }
-        if (collision(AncCamfive, AncPole)) {
-                       AncCamfive.setTranslateX(AncCamfive.getTranslateX() - directionX);
-        AncCamfive.setTranslateY(AncCamfive.getTranslateY() - directionY);  
+
+        if (collision(AncJellytwo, AncPole)) {
+            //makes fishing pole strcuk by jellyfish
+            RecFishpole.setFill(Color.BLACK);
+            //stops timers
+            fishtime.stop();
+            camerastime.stop();
+            jellyfishtime.stop();
+            lblWinLoss.setText("You Lost!");
+            //makes control not moveable
+            AncPole.setDisable(true);
+            AncPreStart.setVisible(true);
+            btnPlay.setVisible(false);
+            btnPlayAgain.setVisible(true);
+            btnPlay.setVisible(false);
+
+            //makes pole turn black when hit by jellyfish, loss method
+        }
+        if (collision(AncJellythr, AncPole)) {
+            //makes fishing pole strcuk by jellyfish
+            RecFishpole.setFill(Color.BLACK);
+            //stops timers
+            fishtime.stop();
+            camerastime.stop();
+            jellyfishtime.stop();
+            lblWinLoss.setText("You Lost!");
+            //makes control not moveable
+            AncPole.setDisable(true);
+            AncPreStart.setVisible(true);
+            btnPlay.setVisible(false);
+            btnPlayAgain.setVisible(true);
+            btnPlay.setVisible(false);
+
+            //makes pole turn black when hit by jellyfish, loss method
+        }
+        if (collision(AncJellyfour, AncPole)) {
+            //makes fishing pole strcuk by jellyfish
+            RecFishpole.setFill(Color.BLACK);
+            //stops timers
+            fishtime.stop();
+            camerastime.stop();
+            jellyfishtime.stop();
+            lblWinLoss.setText("You Lost!");
+            //makes control not moveable
+            AncPole.setDisable(true);
+            AncPreStart.setVisible(true);
+            btnPlay.setVisible(false);
+            btnPlayAgain.setVisible(true);
+            btnPlay.setVisible(false);
+
+        }
+    }
+
+    public boolean collision(AnchorPane block1, AnchorPane block2) {
+        return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
+    }
+
+    private void moveCamera() {
+        AncCamfive.setTranslateX(AncCamfive.getTranslateX() + camera5X);
+        AncCamsix.setTranslateX(AncCamsix.getTranslateX() + camera6X);
+        AncCamsev.setTranslateX(AncCamsev.getTranslateX() + camera7X);
+        AncCameig.setTranslateX(AncCameig.getTranslateX() + camera8X);
+
+        if (collision(AncCamfive, recWallr)) {
+            camera5X = -10;
+        }
+
+        if (collision(AncCamfive, recWalll)) {
+            camera5X = 10;
         }
 
         if (collision(AncCamsix, recWallr)) {
-                         AncCamsix.setTranslateX(AncCamsix.getTranslateX() - directionX);
-        AncCamsix.setTranslateY(AncCamsix.getTranslateY() - directionY);  
+            camera6X = -10;
         }
         if (collision(AncCamsix, recWalll)) {
-                       AncCamsix.setTranslateX(AncCamsix.getTranslateX() - directionX);
-        AncCamsix.setTranslateY(AncCamsix.getTranslateY() - directionY);  
+            camera6X = 10;
         }
         if (collision(AncCamsev, recWallr)) {
-                            AncCamsev.setTranslateX(AncCamsev.getTranslateX() - directionX);
-        AncCamsev.setTranslateY(AncCamsev.getTranslateY() - directionY);  
+            camera7X = -10;
         }
         if (collision(AncCamsev, recWalll)) {
-                                    AncCamsev.setTranslateX(AncCamsev.getTranslateX() - directionX);
-        AncCamsev.setTranslateY(AncCamsev.getTranslateY() - directionY);  
+            camera7X = 10;
         }
         if (collision(AncCameig, recWallr)) {
-                            AncCameig.setTranslateX(AncCameig.getTranslateX() - directionX);
-        AncCameig.setTranslateY(AncCameig.getTranslateY() - directionY);  
+            camera8X = -10;
         }
         if (collision(AncCameig, recWalll)) {
-                             AncCameig.setTranslateX(AncCameig.getTranslateX() - directionX);
-        AncCameig.setTranslateY(AncCameig.getTranslateY() - directionY);  
+            camera8X = 10;
         }
     }
 
@@ -370,127 +497,134 @@ public class FXMLController implements Initializable {
 
     private void moveFish() {
 
-        AncFishten.setTranslateX(AncFishten.getTranslateX() + directionX);
-        AncFishten.setTranslateY(AncFishten.getTranslateY() + directionY);
-        AncFishnine.setTranslateX(AncFishnine.getTranslateX() + directionX);
-        AncFishnine.setTranslateY(AncFishnine.getTranslateY() + directionY);
-        AncFisheigh.setTranslateX(AncFisheigh.getTranslateX() + directionX);
-        AncFisheigh.setTranslateY(AncFisheigh.getTranslateY() + directionY);
-        AncFishsev.setTranslateX(AncFishsev.getTranslateX() + directionX);
-        AncFishsev.setTranslateY(AncFishsev.getTranslateY() + directionY);
-        AncFishSix.setTranslateX(AncFishSix.getTranslateX() + directionX);
-        AncFishSix.setTranslateY(AncFishSix.getTranslateY() + directionY);
-        AncFishFive.setTranslateX(AncFishFive.getTranslateX() + directionX);
-        AncFishFive.setTranslateY(AncFishFive.getTranslateY() + directionY);
-        AncFishfour.setTranslateX(AncFishfour.getTranslateX() + directionX);
-        AncFishfour.setTranslateY(AncFishfour.getTranslateY() + directionY);
-        AncFishthr.setTranslateX(AncFishthr.getTranslateX() + directionX);
-        AncFishthr.setTranslateY(AncFishthr.getTranslateY() + directionY);
-        AncFishtwo.setTranslateX(AncFishtwo.getTranslateX() + directionX);
-        AncFishtwo.setTranslateY(AncFishtwo.getTranslateY() + directionY);
-        AncFishone.setTranslateX(AncFishone.getTranslateX() + directionX);
-        AncFishone.setTranslateY(AncFishone.getTranslateY() + directionY);
-
+        AncFishone.setTranslateX(AncFishone.getTranslateX() + fish1X);
+        AncFishtwo.setTranslateX(AncFishtwo.getTranslateX() + fish2X);
+        AncFishthr.setTranslateX(AncFishthr.getTranslateX() + fish3X);
+        AncFishfour.setTranslateX(AncFishfour.getTranslateX() + fish4X);
+        AncFishFive.setTranslateX(AncFishFive.getTranslateX() + fish5X);
+        AncFishSix.setTranslateX(AncFishSix.getTranslateX() + fish6X);
+        AncFishsev.setTranslateX(AncFishsev.getTranslateX() + fish7X);
+        AncFisheigh.setTranslateX(AncFisheigh.getTranslateX() + fish8X);
+        AncFishnine.setTranslateX(AncFishnine.getTranslateX() + fish9X);
+        AncFishten.setTranslateX(AncFishten.getTranslateX() + fish10X);
         if (collision(AncFishone, recWallr)) {
-        AncFishone.setTranslateX(AncFishone.getTranslateX() - directionX);
-        AncFishone.setTranslateY(AncFishone.getTranslateY() - directionY);  
-
+            fish1X = -10;
+            AncFishone.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishone.setRotate(0);
         }
+
         if (collision(AncFishone, recWalll)) {
-         AncFishone.setTranslateX(AncFishone.getTranslateX() - directionX);
-        AncFishone.setTranslateY(AncFishone.getTranslateY() - directionY);  
-     
-
+            fish1X = 10;
+            AncFishone.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishone.setRotate(180);
         }
+
         if (collision(AncFishtwo, recWallr)) {
-         AncFishtwo.setTranslateX(AncFishtwo.getTranslateX() - directionX);
-        AncFishtwo.setTranslateY(AncFishtwo.getTranslateY() - directionY);  
-
+            fish2X = -10;
+            AncFishtwo.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishtwo.setRotate(0);
         }
+
         if (collision(AncFishtwo, recWalll)) {
-            AncFishtwo.setTranslateX(AncFishtwo.getTranslateX() - directionX);
-        AncFishtwo.setTranslateY(AncFishtwo.getTranslateY() - directionY);  
-
+            fish2X = 10;
+            AncFishtwo.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishtwo.setRotate(180);
         }
+
         if (collision(AncFishthr, recWallr)) {
-            AncFishthr.setTranslateX(AncFishthr.getTranslateX() - directionX);
-        AncFishthr.setTranslateY(AncFishthr.getTranslateY() - directionY);  
-
+            fish3X = -10;
+            AncFishthr.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishthr.setRotate(0);
         }
+
         if (collision(AncFishthr, recWalll)) {
-           AncFishthr.setTranslateX(AncFishthr.getTranslateX() - directionX);
-        AncFishthr.setTranslateY(AncFishthr.getTranslateY() - directionY);  
+            fish3X = 10;
+            AncFishthr.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishthr.setRotate(180);
         }
+
         if (collision(AncFishfour, recWallr)) {
-    AncFishfour.setTranslateX(AncFishfour.getTranslateX() - directionX);
-        AncFishfour.setTranslateY(AncFishfour.getTranslateY() - directionY);  
-
+            fish4X = -10;
+            AncFishfour.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishfour.setRotate(0);
         }
+
         if (collision(AncFishfour, recWalll)) {
-          AncFishfour.setTranslateX(AncFishfour.getTranslateX() - directionX);
-        AncFishfour.setTranslateY(AncFishfour.getTranslateY() - directionY);  
-
+            fish4X = 10;
+            AncFishfour.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishfour.setRotate(180);
         }
+
         if (collision(AncFishFive, recWallr)) {
-            AncFishFive.setTranslateX(AncFishFive.getTranslateX() - directionX);
-        AncFishFive.setTranslateY(AncFishFive.getTranslateY() - directionY);  
-
-
+            fish5X = -10;
+            AncFishFive.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishFive.setRotate(0);
         }
+
         if (collision(AncFishFive, recWalll)) {
-         AncFishFive.setTranslateX(AncFishFive.getTranslateX() - directionX);
-        AncFishFive.setTranslateY(AncFishFive.getTranslateY() - directionY);  
-
+            fish5X = 10;
+            AncFishFive.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishFive.setRotate(180);
         }
+
         if (collision(AncFishSix, recWallr)) {
-           AncFishSix.setTranslateX(AncFishSix.getTranslateX() - directionX);
-        AncFishSix.setTranslateY(AncFishSix.getTranslateY() - directionY);  
-
+            fish6X = -10;
+            AncFishSix.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishSix.setRotate(0);
         }
+
         if (collision(AncFishSix, recWalll)) {
-            AncFishSix.setTranslateX(AncFishSix.getTranslateX() - directionX);
-        AncFishSix.setTranslateY(AncFishSix.getTranslateY() - directionY);  
-
+            fish6X = 10;
+            AncFishSix.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishSix.setRotate(180);
         }
+
         if (collision(AncFishsev, recWallr)) {
-            AncFishsev.setTranslateX(AncFishsev.getTranslateX() - directionX);
-        AncFishsev.setTranslateY(AncFishsev.getTranslateY() - directionY);  
-
+            fish7X = -10;
+            AncFishsev.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishsev.setRotate(0);
         }
+
         if (collision(AncFishsev, recWalll)) {
-              AncFishsev.setTranslateX(AncFishsev.getTranslateX() - directionX);
-        AncFishsev.setTranslateY(AncFishsev.getTranslateY() - directionY); 
-
+            fish7X = 10;
+            AncFishsev.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishsev.setRotate(180);
         }
+
         if (collision(AncFisheigh, recWallr)) {
-              AncFisheigh.setTranslateX(AncFisheigh.getTranslateX() - directionX);
-        AncFisheigh.setTranslateY(AncFisheigh.getTranslateY() - directionY); 
-
+            fish8X = -10;
+            AncFisheigh.setRotationAxis(new Point3D(0, 90, 1));
+            AncFisheigh.setRotate(0);
         }
+
         if (collision(AncFisheigh, recWalll)) {
-                AncFisheigh.setTranslateX(AncFisheigh.getTranslateX() - directionX);
-        AncFisheigh.setTranslateY(AncFisheigh.getTranslateY() - directionY); 
-
+            fish8X = 10;
+            AncFisheigh.setRotationAxis(new Point3D(0, 90, 1));
+            AncFisheigh.setRotate(180);
         }
+
         if (collision(AncFishnine, recWallr)) {
-           AncFishnine.setTranslateX(AncFishnine.getTranslateX() - directionX);
-        AncFishnine.setTranslateY(AncFishnine.getTranslateY() - directionY); 
-   }
-        
+            fish9X = -10;
+            AncFishnine.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishnine.setRotate(0);
+        }
+
         if (collision(AncFishnine, recWalll)) {
-              AncFishnine.setTranslateX(AncFishnine.getTranslateX() - directionX);
-        AncFishnine.setTranslateY(AncFishnine.getTranslateY() - directionY); 
+            fish9X = 10;
+            AncFishnine.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishnine.setRotate(180);
         }
-        
+
         if (collision(AncFishten, recWallr)) {
-              AncFishten.setTranslateX(AncFishten.getTranslateX() - directionX);
-        AncFishten.setTranslateY(AncFishten.getTranslateY() - directionY); 
-
+            fish10X = -10;
+            AncFishten.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishten.setRotate(0);
         }
-        if (collision(AncFishten, recWalll)) {
-            AncFishten.setTranslateX(AncFishten.getTranslateX() - directionX);
-        AncFishten.setTranslateY(AncFishten.getTranslateY() - directionY); 
 
+        if (collision(AncFishten, recWalll)) {
+            fish10X = 10;
+            AncFishten.setRotationAxis(new Point3D(0, 90, 1));
+            AncFishten.setRotate(180);
         }
     }
 
@@ -499,54 +633,45 @@ public class FXMLController implements Initializable {
     }
 
     private void moveJellyfish() {
-
-        AncJellyone.setTranslateX(AncJellyone.getTranslateX() + directionX);
-        AncJellyone.setTranslateY(AncJellyone.getTranslateY() + directionY);
-        AncJellytwo.setTranslateX(AncJellytwo.getTranslateX() + directionX);
-        AncJellytwo.setTranslateY(AncJellytwo.getTranslateY() + directionY);
-        AncJellythr.setTranslateX(AncJellythr.getTranslateX() + directionX);
-        AncJellythr.setTranslateY(AncJellythr.getTranslateY() + directionY);
-        AncJellyfour.setTranslateX(AncJellyfour.getTranslateX() + directionX);
-        AncJellyfour.setTranslateY(AncJellyfour.getTranslateY() + directionY);
+        AncJellyone.setTranslateX(AncJellyone.getTranslateX() + jellyfish1X);
+        AncJellytwo.setTranslateX(AncJellytwo.getTranslateX() + jellyfish2X);
+        AncJellythr.setTranslateX(AncJellythr.getTranslateX() + jellyfish3X);
+        AncJellyfour.setTranslateX(AncJellyfour.getTranslateX() + jellyfish4X);
 
         if (collision(AncJellyone, recWallr)) {
-         AncJellyone.setTranslateX(AncJellyone.getTranslateX() - directionX);
-        AncJellyone.setTranslateY(AncJellyone.getTranslateY() - directionY); 
+            jellyfish1X = -10;
         }
-        
+
         if (collision(AncJellyone, recWalll)) {
-               AncJellyone.setTranslateX(AncJellyone.getTranslateX() - directionX);
-        AncJellyone.setTranslateY(AncJellyone.getTranslateY() - directionY); 
+            jellyfish1X = 10;
         }
-        
+
         if (collision(AncJellytwo, recWallr)) {
-                AncJellytwo.setTranslateX(AncJellytwo.getTranslateX() - directionX);
-        AncJellytwo.setTranslateY(AncJellytwo.getTranslateY() - directionY); 
+            jellyfish2X = -10;
+            AncJellytwo.setRotationAxis(new Point3D(0, 90, 1));
+            AncJellytwo.setRotate(180);
         }
-        
+
         if (collision(AncJellytwo, recWalll)) {
-        AncJellytwo.setTranslateX(AncJellytwo.getTranslateX() - directionX);
-        AncJellytwo.setTranslateY(AncJellytwo.getTranslateY() - directionY); 
+            jellyfish2X = 10;
+            AncJellytwo.setRotationAxis(new Point3D(0, 90, 1));
+            AncJellytwo.setRotate(0);
         }
-        
+
         if (collision(AncJellythr, recWallr)) {
-  AncJellythr.setTranslateX(AncJellytwo.getTranslateX() - directionX);
-        AncJellythr.setTranslateY(AncJellytwo.getTranslateY() - directionY); 
+            jellyfish3X = -10;
         }
-        
+
         if (collision(AncJellythr, recWalll)) {
-          AncJellythr.setTranslateX(AncJellytwo.getTranslateX() - directionX);
-        AncJellythr.setTranslateY(AncJellytwo.getTranslateY() - directionY); 
+            jellyfish3X = 10;
         }
-        
+
         if (collision(AncJellyfour, recWallr)) {
-       AncJellyfour.setTranslateX(AncJellyfour.getTranslateX() - directionX);
-        AncJellyfour.setTranslateY(AncJellyfour.getTranslateY() - directionY); 
+            jellyfish4X = -10;
 
         }
         if (collision(AncJellyfour, recWalll)) {
-  AncJellyfour.setTranslateX(AncJellyfour.getTranslateX() - directionX);
-        AncJellyfour.setTranslateY(AncJellyfour.getTranslateY() - directionY); 
+            jellyfish4X = 10;
         }
     }
 
@@ -555,9 +680,7 @@ public class FXMLController implements Initializable {
             //win method runs if score is 10 fish 
             for (AnchorPane name : fish) {
                 name.setDisable(true);
-
             }
-
             for (AnchorPane name : jellyfish) {
                 name.setDisable(true);
 
@@ -566,10 +689,21 @@ public class FXMLController implements Initializable {
                 name.setDisable(true);
             }
             AncPole.setDisable(true);
+            //turns timers off
             fishtime.stop();
             camerastime.stop();
             jellyfishtime.stop();
-            int Winning;
+            //adds +1 to number of wins
+            wins++;
+            lblWinLoss.setVisible(true);
+            lblWinLoss.setText("You Won!");
+            //sets label with umber of wins
+            lblWins.setText("" + wins);
+            AncPole.setDisable(true);
+            AncPreStart.setVisible(true);
+            btnPlay.setVisible(false);
+            btnPlayAgain.setVisible(true);
+            btnPlay.setVisible(false);
         }
     }
 
@@ -578,11 +712,12 @@ public class FXMLController implements Initializable {
         //starts timers when you press play
         AncPreStart.setVisible(false);
         AncPole.setDisable(false);
-        directionX = -10;
-        directionY = 0;
+        //runs movement
         run = true;
+        //sets score back to zero for new game
         score = 0;
         lblCooler.setText("" + score);
+        //plays timers
         camerastime.setCycleCount(Timeline.INDEFINITE);
         camerastime.play();
         fishtime.setCycleCount(Timeline.INDEFINITE);
@@ -590,53 +725,64 @@ public class FXMLController implements Initializable {
         jellyfishtime.setCycleCount(Timeline.INDEFINITE);
         jellyfishtime.play();
         btnTools.setDisable(false);
-         RecFishpole.setFill(Color.RED);    
-         
-         
+        //turns pole back to jellyfish incase not red, not struck by jellyfish anymore
+        RecFishpole.setFill(Color.RED);
+        AncPole.requestFocus();
+        //sets collected cameras invisible if not already
+        AncCamthr.setVisible(false);
+        AncCamtwo.setVisible(false);
+        AncCamfou.setVisible(false);
+        AncCamone.setVisible(false);
     }
 
-    
-    void Winning(String msg) {
-        //Comfirmation message when loss or win occurs 
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText("Game Over");
-        alert.setContentText("Game has ended, choose an option");
-        ButtonType buttonTypeOne = new ButtonType("Play again");
-        ButtonType buttonTypeTwo = new ButtonType("Exit game");
-        ButtonType buttonTypeThree = new ButtonType("Three");
-        alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeThree);
-        Optional<ButtonType> Result = alert.showAndWait();
-        lblWinLoss.setText("You Won!");
-
-        if (score == 10) {
-            wins++;
-            lblWins.setText("" + wins);
-        }
-
-        if (alert.getResult() == buttonTypeOne) {
-            int btnRest;
-        }
-
-        if (alert.getResult() == buttonTypeTwo) {
-            System.exit(0);
-        }
-
-    
-
-        /* creates an array of all the fish listed, makes them all 
+    /* creates an array of all the fish listed, makes them all 
       identified as "fish" */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        btnTools.setDisable(true);
+        btnExit.setVisible(false);
+        btnRest.setVisible(false);
+        AncPreStart.setVisible(true);
+        AncPole.setDisable(true);
+        btnPlayAgain.setVisible(false);
+        btnPlay.setVisible(true);
+        //array of fish
+        AnchorPane temp[] = {AncFishone, AncFishtwo, AncFishthr, AncFishfour, AncFishFive,
+            AncFishsev, AncFisheigh, AncFishnine, AncFishten};
+        fish = temp;
+        //array of jellyfish
+        AnchorPane temp1[] = {AncJellyone, AncJellytwo, AncJellythr, AncJellyfour};
+        jellyfish = temp1;
+        //array of cameras
+        AnchorPane temp2[] = {AncCamfive, AncCamsix, AncCamsev, AncCameig};
+        cameras = temp2;
+        //sets fish collected in cooler invisible to be collected again
+        ArcFishnin.setVisible(false);
+        ArcFishtwen.setVisible(false);
+        ArcFishfou.setVisible(false);
+        ArcFishsixt.setVisible(false);
+        ArcFisheighte.setVisible(false);
+        ArcFishele.setVisible(false);
+        ArcFishfif.setVisible(false);
+        ArcFishthi.setVisible(false);
+        ArcFishseve.setVisible(false);
+        ArcFishtwe.setVisible(false);
+        //set cameras on ice back to start to be collected again
+        AncCamthr.setVisible(false);
+        AncCamtwo.setVisible(false);
+        AncCamfou.setVisible(false);
+        AncCamone.setVisible(false);
         for (AnchorPane name : fish) {
             name.setDisable(true);
         }
-     
+
 
         /* creates an array of all the fish listed, makes them all 
       identified as "fish" */
         for (AnchorPane name : jellyfish) {
             name.setDisable(true);
         }
-    
+
 
         /* creates an array of all the cameras listed, makes them all 
       identified as "cameras" */
@@ -645,21 +791,7 @@ public class FXMLController implements Initializable {
             //disables timer for cameras movement
         }
     }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        btnTools.setDisable(true);
-        btnExit.setVisible(false);
-        btnRest.setVisible(false);
-        AncPreStart.setVisible(true);
-        AncPole.setDisable(true);
-            AnchorPane temp[] = {AncFishone, AncFishtwo, AncFishthr, AncFishfour, AncFishFive,
-            AncFishsev, AncFisheigh, AncFishnine, AncFishten};
-        fish = temp;
-          AnchorPane temp1[] = {AncJellyone, AncJellytwo, AncJellythr, AncJellyfour};
-        jellyfish = temp1;
-            AnchorPane temp2[] = {AncCamfive, AncCamsix, AncCamsev, AncCameig};
-        cameras = temp2;
-    }
 }
+    
+
 // music didn't work out with youtube to mp3 conversion (activated the firewall)

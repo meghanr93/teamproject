@@ -41,7 +41,7 @@ import javafx.scene.Scene;
 import static ryan.teamproject.MainApp.setRoot;
 //import static ryan.teamproject.MainApp.setRoot;
 
-public class FXMLController implements Initializable {
+public class FXMLIce implements Initializable {
 
     boolean run = false;
     int directionY = 0;
@@ -50,11 +50,13 @@ public class FXMLController implements Initializable {
     Timeline camerastime = new Timeline(new KeyFrame(Duration.millis(80), ae -> moveCamera()));
     Timeline fishtime = new Timeline(new KeyFrame(Duration.millis(80), ae -> moveFish()));
     Timeline jellyfishtime = new Timeline(new KeyFrame(Duration.millis(120), ae -> moveJellyfish()));
-
+   
+    @FXML
+    private Button btnhh, btnClose,btnCloset;
     @FXML
     private AnchorPane AncFishone, AncFishtwo, AncFishthr, AncFishfour, AncFishFive, AncFishten, AncFishnine, AncFishsev, AncFisheigh, AncFishSix,
-            AncJellyfour, AncJellyone, AncJellytwo, AncJellythr, AncCamfive, AncCamthr, AncCamtwo, AncCamfou, AncCamone, AncCameig, AncCamsev, AncCamsix, AncPole, AncPreStart;
-
+            AncJellyfour, AncJellyone, AncJellytwo, AncJellythr, AncCamfive, AncCamthr, AncCamtwo, AncCamfou, AncCamone, AncCameig, AncCamsev, AncCamsix, AncPole, AncPreStart,
+            Anchh;
     @FXML
     private Rectangle RecFishpole;
 
@@ -103,6 +105,11 @@ public class FXMLController implements Initializable {
         AncPreStart.setVisible(true);
         AncPole.setDisable(true);
         btnTools.setDisable(false);
+        btnTools.setVisible(true);
+         btnhh.setVisible (false);
+         btnCloset.setVisible (false);
+        btnClose.setVisible (false);
+        Anchh.setVisible (false);
         btnExit.setVisible(false);
         btnRest.setVisible(false);
         btnPlayAgain.setVisible(false);
@@ -187,6 +194,9 @@ public class FXMLController implements Initializable {
         jellyfishtime.play();
         //allows tools to be pressed for exit and restart buttons
         btnTools.setDisable(false);
+         btnhh.setVisible (false);
+        btnClose.setVisible (false);
+        Anchh.setVisible (false);
         //turns pole red for restart (not being struck by jellyfish)
         RecFishpole.setFill(Color.RED);
         AncPole.requestFocus();
@@ -213,6 +223,9 @@ public class FXMLController implements Initializable {
     void btnTools(MouseEvent event) {
         btnExit.setVisible(true);
         btnRest.setVisible(true);
+         btnhh.setVisible (true);
+    btnTools.setVisible (false);
+    btnCloset.setVisible (true);
     }
 
     @FXML
@@ -737,9 +750,37 @@ public class FXMLController implements Initializable {
 
     /* creates an array of all the fish listed, makes them all 
       identified as "fish" */
+    
+     @FXML
+    void btnhh(ActionEvent event) {
+Anchh.setVisible (true);
+btnClose.setVisible (true);
+btnhh.setVisible (false);
+    }
+        @FXML
+    void btnClose(ActionEvent event) {
+Anchh.setVisible (false);
+btnhh.setVisible (true);
+btnClose.setVisible (false);
+btnTools.setVisible (true);
+    }
+        @FXML
+    void btnCloset(ActionEvent event) {
+btnTools.setVisible (true);
+     btnExit.setVisible(false);
+        btnRest.setVisible(false);
+         btnhh.setVisible (false);
+         btnCloset.setVisible (false);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btnTools.setDisable(true);
+        btnTools.setVisible (true);
+        btnhh.setVisible (false);
+        btnClose.setVisible (false);
+        btnCloset.setVisible (false);
+        Anchh.setVisible (false);
         btnExit.setVisible(false);
         btnRest.setVisible(false);
         AncPreStart.setVisible(true);

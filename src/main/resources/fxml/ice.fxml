@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Arc?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.QuadCurve?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#AncPole" onKeyReleased="#AncPole" prefHeight="517.0" prefWidth="603.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ryan.teamproject.FXMLIce">
+   <children>
+      <Label layoutX="-3.0" layoutY="92.0" prefHeight="423.0" prefWidth="607.0" style="-fx-background-color: #40c1e4;" textFill="#40c1e4" />
+      <Label layoutX="2.0" layoutY="2.0" prefHeight="105.0" prefWidth="600.0" style="-fx-background-color: light_grey;" />
+      <QuadCurve controlX="-80.0" controlY="-57.0" endX="-56.0" endY="-13.0" fill="#40c1e4" layoutX="372.0" layoutY="69.0" startX="-108.0" startY="-13.0" stroke="BLACK" strokeType="INSIDE" />
+      <QuadCurve controlX="-101.0" controlY="-4.0" endX="-76.0" endY="-47.0" fill="#40c1e4" layoutX="391.0" layoutY="104.0" startX="-127.0" startY="-47.0" stroke="BLACK" strokeType="INSIDE" />
+      <AnchorPane fx:id="AncFishone" layoutX="96.0" layoutY="356.0" prefHeight="49.0" prefWidth="73.0">
+         <children>
+            <Circle fill="#ff8005" layoutX="16.0" layoutY="26.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fill="#ff7b1f" layoutX="51.0" layoutY="26.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="WHITE" layoutX="11.0" layoutY="24.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="12.0" layoutY="23.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncFishten" layoutX="207.0" layoutY="460.0" prefHeight="43.0" prefWidth="73.0">
+         <children>
+            <Circle fill="#ff8b21" layoutX="27.0" layoutY="24.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fill="#ff801f" layoutX="53.0" layoutY="22.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="WHITE" layoutX="14.0" layoutY="21.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="11.0" layoutY="21.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AncFishnine" layoutX="517.0" layoutY="347.0" prefHeight="28.0" prefWidth="66.0">
+         <children>
+            <Arc fill="#ff8621" layoutX="47.0" layoutY="11.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#ff9800" layoutX="12.0" layoutY="11.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="4.0" layoutY="10.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="4.0" layoutY="10.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AncFishsev" layoutX="439.0" layoutY="395.0" prefHeight="49.0" prefWidth="80.0">
+         <children>
+            <Arc fill="#ff8521" layoutX="61.0" layoutY="14.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#ff9030" layoutX="30.0" layoutY="14.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="21.0" layoutY="11.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="18.0" layoutY="11.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncFisheigh" layoutX="413.0" layoutY="178.0" prefHeight="40.0" prefWidth="80.0">
+         <children>
+            <Circle fill="#ff8a1f" layoutX="24.0" layoutY="14.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="14.0" layoutY="16.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="16.0" layoutY="15.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fill="#ff801f" layoutX="52.0" layoutY="10.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncFishSix" layoutX="351.0" layoutY="249.0" prefHeight="50.0" prefWidth="80.0">
+         <children>
+            <Arc fill="#ff801f" layoutX="61.0" layoutY="43.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#ff761f" layoutX="34.0" layoutY="43.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="24.0" layoutY="45.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="24.0" layoutY="45.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncFishFive" layoutX="327.0" layoutY="421.0" prefHeight="43.0" prefWidth="73.0">
+         <children>
+            <Circle fill="#ff851f" layoutX="16.0" layoutY="23.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fill="#ff931f" layoutX="49.0" layoutY="30.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="WHITE" layoutX="13.0" layoutY="23.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="13.0" layoutY="23.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncFishfour" layoutX="222.0" layoutY="388.0" prefHeight="43.0" prefWidth="80.0">
+         <children>
+            <Circle fill="#ff8a1f" layoutX="16.0" layoutY="24.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fill="#ff7b1f" layoutX="51.0" layoutY="22.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="WHITE" layoutX="10.0" layoutY="27.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="12.0" layoutY="26.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncFishthr" layoutX="147.0" layoutY="282.0" prefHeight="43.0" prefWidth="73.0">
+         <children>
+            <Arc fill="#ff801f" layoutX="59.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="#ff8121" layoutX="28.0" layoutY="26.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="24.0" layoutY="27.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="24.0" layoutY="27.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncJellyfour" layoutX="548.0" layoutY="174.0" prefHeight="49.0" prefWidth="40.0">
+         <children>
+            <Circle fill="#ffe6fe" layoutX="19.0" layoutY="21.0" radius="13.0" stroke="BLACK" strokeType="INSIDE" />
+            <Line endX="203.0" endY="297.0" layoutX="-170.0" layoutY="-256.0" startX="196.0" startY="286.5" />
+            <Line endX="199.0" endY="302.0" layoutX="-175.0" layoutY="-258.0" startX="194.0" startY="292.0" />
+            <Line endX="181.0" endY="302.0" layoutX="-169.0" layoutY="-260.0" startX="181.0" startY="287.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncJellytwo" layoutX="426.0" layoutY="314.0" prefHeight="59.0" prefWidth="40.0">
+         <children>
+            <Circle fill="#ffdefa" layoutX="24.0" layoutY="38.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+            <Line endX="267.0" endY="246.0" layoutX="-249.0" layoutY="-204.0" startX="254.0" startY="261.0" />
+            <Line endX="247.0" endY="244.0" layoutX="-247.0" layoutY="-204.0" startX="256.0" startY="237.0" />
+            <Line endX="266.0" endY="279.0" layoutX="-246.0" layoutY="-215.0" startX="276.0" startY="267.0" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncJellythr" layoutX="298.0" layoutY="472.0" prefHeight="34.0" prefWidth="34.0">
+         <children>
+            <Circle fill="#ffd1e9" layoutX="16.0" layoutY="21.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncCamtwo" layoutX="487.0" layoutY="12.0" prefHeight="32.0" prefWidth="51.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575555" height="27.0" layoutX="6.0" layoutY="6.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#8da5bc" layoutX="26.0" layoutY="20.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncCamfou" layoutX="542.0" layoutY="48.0" prefHeight="40.0" prefWidth="51.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575555" height="27.0" layoutX="6.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#86a5c3" layoutX="26.0" layoutY="21.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncCamone" layoutX="531.0" layoutY="13.0" prefHeight="43.0" prefWidth="52.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575555" height="27.0" layoutX="18.0" layoutY="5.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#a1afbc" layoutX="38.0" layoutY="19.0" radius="9.0" stroke="#72acc3" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncCameig" layoutX="43.0" layoutY="293.0" prefHeight="32.0" prefWidth="52.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575555" height="27.0" layoutX="-6.0" layoutY="1.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#a1afbc" layoutX="15.0" layoutY="15.0" radius="8.0" stroke="#72acc3" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncCamsev" layoutX="262.0" layoutY="327.0" prefHeight="32.0" prefWidth="51.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#545657" height="27.0" layoutX="8.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#a1afbc" layoutX="28.0" layoutY="19.0" radius="9.0" stroke="#72acc3" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncCamsix" layoutX="427.0" layoutY="473.0" prefHeight="32.0" prefWidth="52.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#4a4a4a" height="27.0" layoutX="11.0" layoutY="2.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#a1afbc" layoutX="31.0" layoutY="16.0" radius="9.0" stroke="#72acc3" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblCooler" layoutX="26.0" layoutY="37.0" prefHeight="61.0" prefWidth="103.0" style="-fx-background-color: #eb0909;" text="     0 Fish" textFill="#282727">
+         <font>
+            <Font name="Eras Bold ITC" size="18.0" />
+         </font>
+      </Label>
+      <Arc fill="WHITE" layoutX="24.0" layoutY="50.0" length="270.0" radiusX="11.0" radiusY="8.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fill="WHITE" layoutX="134.0" layoutY="48.0" length="270.0" radiusX="11.0" radiusY="8.0" rotate="180.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishnin" fill="#ff801f" layoutX="120.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishtwen" fill="#ff801f" layoutX="72.0" layoutY="25.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishfou" fill="#ff801f" layoutX="55.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishsixt" fill="#ff801f" layoutX="82.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFisheighte" fill="#ff801f" layoutX="100.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishele" fill="#ff801f" layoutX="109.0" layoutY="25.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishfif" fill="#ff801f" layoutX="63.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishthi" fill="#ff801f" layoutX="45.0" layoutY="28.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishseve" fill="#ff801f" layoutX="34.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Arc fx:id="ArcFishtwe" fill="#ff801f" layoutX="91.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+      <Button fx:id="btnTools" focusTraversable="false" layoutX="534.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#btnTools" prefHeight="21.0" prefWidth="66.0" text="Tools">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnExit" focusTraversable="false" layoutX="533.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnExitga" prefHeight="22.0" prefWidth="66.0" text="Exit">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnRest" focusTraversable="false" layoutX="533.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnRest" prefHeight="28.0" prefWidth="66.0" text="Restart">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Button>
+      <Label layoutX="8.0" layoutY="97.0" prefHeight="27.0" prefWidth="151.0" text="Collect 10 fish to win">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="8.0" layoutY="126.0" prefHeight="17.0" prefWidth="201.0" text=", avoid jellyfish to not get stung">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="recWallr" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="359.0" layoutX="598.0" layoutY="162.0" stroke="BLACK" strokeType="INSIDE" width="9.0" />
+      <Rectangle fx:id="recWalll" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="359.0" layoutY="161.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+      <Rectangle fx:id="recWallb" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="6.0" layoutX="4.0" layoutY="514.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <Rectangle fx:id="recWallt" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="6.0" layoutX="1.0" layoutY="163.0" stroke="BLACK" strokeType="INSIDE" width="600.0" />
+      <AnchorPane fx:id="AncPole" layoutX="288.0" layoutY="179.0" prefHeight="122.0" prefWidth="34.0">
+         <children>
+            <Rectangle fx:id="RecFishpole" arcHeight="5.0" arcWidth="5.0" fill="#ff1f1f" height="105.0" layoutX="15.0" layoutY="17.0" stroke="BLACK" strokeType="INSIDE" width="6.0" />
+         </children>
+      </AnchorPane>
+      <Label fx:id="lblWins" layoutX="494.0" layoutY="118.0" prefHeight="32.0" prefWidth="66.0" style="-fx-background-color: white;" />
+      <AnchorPane fx:id="AncCamfive" layoutX="487.0" layoutY="258.0" prefHeight="40.0" prefWidth="51.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#57595b" height="27.0" layoutX="9.0" layoutY="7.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#a1afbc" layoutX="29.0" layoutY="20.0" radius="9.0" stroke="#72acc3" strokeType="INSIDE" />
+         </children></AnchorPane>
+      <AnchorPane fx:id="AncJellyone" layoutX="47.0" layoutY="406.0" prefHeight="50.0" prefWidth="34.0">
+         <children>
+            <Circle fill="#ffd2e6" layoutX="30.0" layoutY="36.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AncFishtwo" layoutX="47.0" layoutY="197.0" prefHeight="43.0" prefWidth="73.0">
+         <children>
+            <Circle fill="#ff7a1b" layoutX="21.0" layoutY="13.0" radius="16.0" stroke="BLACK" strokeType="INSIDE" />
+            <Arc fill="#ff931f" layoutX="53.0" layoutY="17.0" length="270.0" radiusX="19.0" radiusY="12.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
+            <Circle fill="WHITE" layoutX="13.0" layoutY="10.0" radius="6.0" stroke="BLACK" strokeType="INSIDE" />
+            <Circle layoutX="15.0" layoutY="8.0" radius="3.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="180.0" layoutY="6.0" prefHeight="17.0" prefWidth="236.0" text="USE W AND S TO CONTROL PLAYER">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font></Label>
+      <AnchorPane fx:id="AncPreStart" layoutX="82.0" layoutY="184.0" prefHeight="175.0" prefWidth="436.0" style="-fx-background-color: white;">
+         <children>
+            <Button fx:id="btnPlay" focusTraversable="false" layoutX="131.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlay" prefHeight="24.0" prefWidth="80.0" text="Play" textFill="#28dd80">
+               <font>
+                  <Font name="Eras Bold ITC" size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnExitga" focusTraversable="false" layoutX="252.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnExitga" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: black;" text="Exit" textFill="WHITE">
+               <font>
+                  <Font name="Eras Bold ITC" size="18.0" />
+               </font>
+            </Button>
+            <Label layoutX="102.0" layoutY="14.0" prefHeight="60.0" prefWidth="249.0" text="     Ice Fish" textFill="#40c1e4">
+               <font>
+                  <Font name="Impact" size="48.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblWinLoss" layoutX="28.0" layoutY="12.0" prefHeight="43.0" prefWidth="122.0" />
+            <Button fx:id="btnPlayAgain" layoutX="89.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlayAgain" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: black;" text="Play Again" textFill="WHITE">
+               <font>
+                  <Font name="Eras Bold ITC" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <Button fx:id="btnhh" layoutX="533.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnhh" prefHeight="27.0" prefWidth="66.0" text="help/how">
+         <font>
+            <Font name="Eras Bold ITC" size="10.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnClose" layoutX="534.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnClose" prefHeight="25.0" prefWidth="64.0" text="close ">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnCloset" layoutX="534.0" layoutY="488.0" mnemonicParsing="false" onAction="#btnCloset" prefHeight="25.0" prefWidth="64.0" text="close">
+         <font>
+            <Font name="Eras Bold ITC" size="12.0" />
+         </font>
+      </Button>
+      <AnchorPane fx:id="AncCamthr" layoutX="492.0" layoutY="49.0" prefHeight="36.0" prefWidth="51.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#575555" height="27.0" layoutX="6.0" layoutY="11.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+            <Circle fill="#8aa0b5" layoutX="26.0" layoutY="25.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="Anchh" layoutX="450.0" layoutY="7.0" prefHeight="343.0" prefWidth="136.0" style="-fx-background-color: white;">
+         <children>
+            <Label layoutX="8.0" layoutY="6.0" prefHeight="17.0" prefWidth="117.0" text="How to collect fish:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="2.0" layoutY="23.0" prefHeight="17.0" prefWidth="113.0" text="Move Fishing pole " />
+            <Label layoutX="1.0" layoutY="40.0" prefHeight="17.0" prefWidth="116.0" text="over to fish, press in " />
+            <Label layoutX="11.0" layoutY="57.0" prefHeight="17.0" prefWidth="96.0" text="direction of fish  " />
+            <Label layoutX="8.0" layoutY="74.0" prefHeight="17.0" prefWidth="130.0" text="How to exit program:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="13.0" layoutY="91.0" prefHeight="17.0" prefWidth="120.0" text="press exit under tools," />
+            <Label layoutX="8.0" layoutY="108.0" prefHeight="17.0" prefWidth="131.0" text="press exit on end screen" />
+            <Label layoutX="7.0" layoutY="133.0" prefHeight="17.0" prefWidth="134.0" text="How to avoid jellyfish:">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="7.0" layoutY="150.0" prefHeight="17.0" prefWidth="134.0" text="when jellyfish come near," />
+            <Label layoutX="13.0" layoutY="167.0" prefHeight="17.0" prefWidth="117.0" text="do not press on key " />
+            <Label layoutX="7.0" layoutY="183.0" prefHeight="17.0" prefWidth="136.0" text="buttons s or w" />
+            <Label layoutX="-3.0" layoutY="200.0" prefHeight="17.0" prefWidth="143.0" text="Fish and Cameras on ice?">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutY="217.0" prefHeight="17.0" prefWidth="141.0" text="When a fish is collected," />
+            <Label layoutX="7.0" layoutY="234.0" prefHeight="17.0" prefWidth="141.0" text="one appears in cooler to " />
+            <Label layoutX="13.0" layoutY="251.0" prefHeight="17.0" prefWidth="133.0" text="show it is collected" />
+            <Label layoutX="7.0" layoutY="268.0" prefHeight="17.0" prefWidth="140.0" text="When you accidentely" />
+            <Label layoutX="3.0" layoutY="285.0" prefHeight="17.0" prefWidth="152.0" text="collect a camera, it is thrown" />
+            <Label layoutY="302.0" prefHeight="17.0" prefWidth="154.0" text="on ice to show it out of " />
+            <Label layoutX="7.0" layoutY="321.0" prefHeight="17.0" prefWidth="43.0" text="water" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

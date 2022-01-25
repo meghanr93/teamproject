@@ -147,17 +147,17 @@
       <Arc fx:id="ArcFishthi" fill="#ff801f" layoutX="45.0" layoutY="28.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
       <Arc fx:id="ArcFishseve" fill="#ff801f" layoutX="34.0" layoutY="27.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
       <Arc fx:id="ArcFishtwe" fill="#ff801f" layoutX="91.0" layoutY="24.0" length="270.0" radiusX="19.0" radiusY="6.0" rotate="260.0" startAngle="45.0" stroke="BLACK" strokeType="INSIDE" type="ROUND" />
-      <Button fx:id="btnTools" focusTraversable="false" layoutX="534.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#btnTools" prefHeight="21.0" prefWidth="66.0" text="Tools">
+      <Button fx:id="btnTools" focusTraversable="false" layoutX="534.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#btnTools" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="21.0" prefWidth="66.0" text="Tools">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnExit" focusTraversable="false" layoutX="533.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnExitga" prefHeight="22.0" prefWidth="66.0" text="Exit">
+      <Button fx:id="btnExit" focusTraversable="false" layoutX="533.0" layoutY="459.0" mnemonicParsing="false" onAction="#btnExitga" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="22.0" prefWidth="66.0" text="Exit">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnRest" focusTraversable="false" layoutX="533.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnRest" prefHeight="28.0" prefWidth="66.0" text="Restart">
+      <Button fx:id="btnRest" focusTraversable="false" layoutX="533.0" layoutY="425.0" mnemonicParsing="false" onAction="#btnRest" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="28.0" prefWidth="66.0" text="Restart">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font>
@@ -206,12 +206,12 @@
          </font></Label>
       <AnchorPane fx:id="AncPreStart" layoutX="82.0" layoutY="184.0" prefHeight="175.0" prefWidth="436.0" style="-fx-background-color: white;">
          <children>
-            <Button fx:id="btnPlay" focusTraversable="false" layoutX="131.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlay" prefHeight="24.0" prefWidth="80.0" text="Play" textFill="#28dd80">
+            <Button fx:id="btnPlay" focusTraversable="false" layoutX="131.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlay" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="24.0" prefWidth="80.0" text="Play" textFill="#28dd80">
                <font>
                   <Font name="Eras Bold ITC" size="18.0" />
                </font>
             </Button>
-            <Button fx:id="btnExitga" focusTraversable="false" layoutX="252.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnExitga" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: black;" text="Exit" textFill="WHITE">
+            <Button focusTraversable="false" layoutX="252.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnExitga" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: black;" text="Exit" textFill="WHITE">
                <font>
                   <Font name="Eras Bold ITC" size="18.0" />
                </font>
@@ -222,24 +222,24 @@
                </font>
             </Label>
             <Label fx:id="lblWinLoss" layoutX="28.0" layoutY="12.0" prefHeight="43.0" prefWidth="122.0" />
-            <Button fx:id="btnPlayAgain" layoutX="89.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlayAgain" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: black;" text="Play Again" textFill="WHITE">
+            <Button fx:id="btnPlayAgain" layoutX="89.0" layoutY="88.0" mnemonicParsing="false" onAction="#btnPlayAgain" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="32.0" prefWidth="137.0" style="-fx-background-color: black;" text="Play Again" textFill="WHITE">
                <font>
                   <Font name="Eras Bold ITC" size="18.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <Button fx:id="btnhh" layoutX="533.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnhh" prefHeight="27.0" prefWidth="66.0" text="help/how">
+      <Button fx:id="btnhh" layoutX="533.0" layoutY="393.0" mnemonicParsing="false" onAction="#btnhh" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="27.0" prefWidth="66.0" text="help/how">
          <font>
             <Font name="Eras Bold ITC" size="10.0" />
          </font>
       </Button>
-      <Button fx:id="btnClose" layoutX="534.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnClose" prefHeight="25.0" prefWidth="64.0" text="close ">
+      <Button fx:id="btnClose" layoutX="534.0" layoutY="394.0" mnemonicParsing="false" onAction="#btnClose" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="25.0" prefWidth="64.0" text="close ">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="btnCloset" layoutX="534.0" layoutY="488.0" mnemonicParsing="false" onAction="#btnCloset" prefHeight="25.0" prefWidth="64.0" text="close">
+      <Button fx:id="btnCloset" layoutX="532.0" layoutY="488.0" mnemonicParsing="false" onAction="#btnCloset" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="25.0" prefWidth="66.0" text="close">
          <font>
             <Font name="Eras Bold ITC" size="12.0" />
          </font>

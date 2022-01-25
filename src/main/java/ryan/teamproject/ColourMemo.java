@@ -49,6 +49,8 @@ public class ColourMemo implements Initializable {
     
     @FXML
     private Button btnStart;
+    @FXML
+    private Button btnEndScreen;
    
     ArrayList<Integer> pattern = new ArrayList();
     int patternNum;
@@ -201,11 +203,13 @@ public class ColourMemo implements Initializable {
         }
         writePlayers();
         */
+        MainApp.gameScore=MainApp.gameScore+(patternSize-1);
         pattern.clear();
         patternNum=0;
         btnStart.setDisable(false);
         lblStreak.setText("0");
         canClick=false;
+        btnEndScreen.setDisable(false);
     }
   
     /*Read and Write score.
@@ -254,6 +258,7 @@ public class ColourMemo implements Initializable {
         makePattern();
         timeline.play();
         btnStart.setDisable(true);
+        btnEndScreen.setDisable(true);
     }
     
     @FXML
@@ -261,6 +266,11 @@ public class ColourMemo implements Initializable {
     void btnMenu(ActionEvent event)throws IOException {
         timeline.stop();
         MainApp.setRoot("gamesMenu");
+    }
+    @FXML
+    void btnEndScreenClick(ActionEvent event)throws IOException {
+        timeline.stop();
+        MainApp.setRoot("endscreen");
     }
     
     //Plays a sound

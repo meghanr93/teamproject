@@ -50,6 +50,8 @@ public class Frogger implements Initializable{
     private Label lblSeaweed3;
     @FXML
     private Label lblSeaweed4;
+    @FXML
+    private Button btnEndScreen;
     
     ArrayList<player> players=new ArrayList();//
     int playercount;
@@ -118,12 +120,14 @@ public class Frogger implements Initializable{
         String name=dialog.getEditor().getText();
         readPlayers();
         */
+        MainApp.gameScore=MainApp.gameScore+score;
         score=0;
         lblScore.setText(""+score);
         timeline.stop();
         started=false;
         btnStart.setDisable(false);
         playSound("/sad_trombone.mp3");
+        btnEndScreen.setDisable(false);
     }   
     
     //Collision code for when the obstacles reach the end of the game screen
@@ -182,7 +186,12 @@ public class Frogger implements Initializable{
     //Button to go back to menu.
     @FXML
     void btnMenu(ActionEvent event)throws IOException {
-        MainApp.setRoot("primary");
+        MainApp.setRoot("gamesMenu");
+    }
+    
+    @FXML
+    void btnEndScreenClick(ActionEvent event)throws IOException {
+        MainApp.setRoot("endscreen");
     }
     
     //Key press code to move the character.
@@ -220,6 +229,7 @@ public class Frogger implements Initializable{
         rand = ThreadLocalRandom.current().nextInt(1,4+1);
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
+        btnEndScreen.setDisable(true);
     }
     
     // Button expands when mouse hovers over, shrinks when mouse stops hovering over it.

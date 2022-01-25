@@ -100,7 +100,8 @@ public class FXMLIce implements Initializable {
 
     @FXML
     void btnRest(ActionEvent event) {
-        //reset method
+        restartGame();
+        /*//reset method
         //sets objects visible and invisible
         AncPreStart.setVisible(true);
         AncPole.setDisable(true);
@@ -123,27 +124,31 @@ public class FXMLIce implements Initializable {
         jellyfishtime.stop();
 
 
-        /* creates an array of all the fish listed, makes them all 
-      identified as "fish" */
+        // creates an array of all the fish listed, makes them all 
+        //identified as "fish" 
         for (AnchorPane name : fish) {
             name.setDisable(true);
         }
 
-        /* creates an array of all the fish listed, makes them all 
-      identified as "jellyfish" */
+        // creates an array of all the fish listed, makes them all 
+        //identified as "jellyfish" 
         for (AnchorPane name : jellyfish) {
             name.setDisable(true);
         }
 
-        /* creates an array of all the cameras listed, makes them all 
-      identified as "cameras" */
+        // creates an array of all the cameras listed, makes them all 
+        //identified as "cameras" 
         for (AnchorPane name : cameras) {
             name.setDisable(true);
-        }
+        }*/
     }
 
     @FXML
     void btnPlayAgain(ActionEvent event) {
+        restartGame();
+    }
+    
+    void restartGame(){
         //play again method
         //sets objects visible and invisible
         ArcFishnin.setVisible(false);
@@ -223,15 +228,15 @@ public class FXMLIce implements Initializable {
     void btnTools(MouseEvent event) {
         btnExit.setVisible(true);
         btnRest.setVisible(true);
-         btnhh.setVisible (true);
-    btnTools.setVisible (false);
-    btnCloset.setVisible (true);
+        btnhh.setVisible (true);
+        btnTools.setVisible (false);
+        btnCloset.setVisible (true);
     }
 
     @FXML
     void btnExitga(ActionEvent event) throws IOException {
         //sends to exit screen
-      MainApp.setRoot("endscreen");
+        MainApp.setRoot("endscreen");
     }
 
     @FXML
@@ -397,75 +402,37 @@ public class FXMLIce implements Initializable {
         }
 
         if (collision(AncJellyone, AncPole)) {
-            //makes fishing pole strcuk by jellyfish
-            RecFishpole.setFill(Color.BLACK);
-            //stops timers
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            //makes control not moveable
-            AncPole.setDisable(true);
-            lblWinLoss.setText("You Lost!");
-            AncPreStart.setVisible(true);
-            btnPlay.setVisible(false);
-            btnPlayAgain.setVisible(true);
-            btnPlay.setVisible(false);
-
-            //makes pole turn black when hit by jellyfish, loss method
+            lose();
         }
-
         if (collision(AncJellytwo, AncPole)) {
-            //makes fishing pole strcuk by jellyfish
-            RecFishpole.setFill(Color.BLACK);
-            //stops timers
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            lblWinLoss.setText("You Lost!");
-            //makes control not moveable
-            AncPole.setDisable(true);
-            AncPreStart.setVisible(true);
-            btnPlay.setVisible(false);
-            btnPlayAgain.setVisible(true);
-            btnPlay.setVisible(false);
-
-            //makes pole turn black when hit by jellyfish, loss method
+            lose();
         }
         if (collision(AncJellythr, AncPole)) {
-            //makes fishing pole strcuk by jellyfish
-            RecFishpole.setFill(Color.BLACK);
-            //stops timers
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            lblWinLoss.setText("You Lost!");
-            //makes control not moveable
-            AncPole.setDisable(true);
-            AncPreStart.setVisible(true);
-            btnPlay.setVisible(false);
-            btnPlayAgain.setVisible(true);
-            btnPlay.setVisible(false);
-
-            //makes pole turn black when hit by jellyfish, loss method
+            lose();
         }
         if (collision(AncJellyfour, AncPole)) {
-            //makes fishing pole strcuk by jellyfish
-            RecFishpole.setFill(Color.BLACK);
-            //stops timers
-            fishtime.stop();
-            camerastime.stop();
-            jellyfishtime.stop();
-            lblWinLoss.setText("You Lost!");
-            //makes control not moveable
-            AncPole.setDisable(true);
-            AncPreStart.setVisible(true);
-            btnPlay.setVisible(false);
-            btnPlayAgain.setVisible(true);
-            btnPlay.setVisible(false);
-
+            lose();
         }
     }
 
+    void lose(){
+        //makes fishing pole strcuk by jellyfish
+            RecFishpole.setFill(Color.BLACK);
+            //stops timers
+            fishtime.stop();
+            camerastime.stop();
+            jellyfishtime.stop();
+            lblWinLoss.setText("You Lost!");
+            //makes control not moveable
+            AncPole.setDisable(true);
+            AncPreStart.setVisible(true);
+            btnPlay.setVisible(false);
+            btnPlayAgain.setVisible(true);
+            btnPlay.setVisible(false);
+            //makes pole turn black when hit by jellyfish, loss method
+            MainApp.gameScore=MainApp.gameScore+score;
+    }
+    
     public boolean collision(AnchorPane block1, AnchorPane block2) {
         return (block1.getBoundsInParent().intersects(block2.getBoundsInParent()));
     }
@@ -771,6 +738,30 @@ btnTools.setVisible (true);
         btnRest.setVisible(false);
          btnhh.setVisible (false);
          btnCloset.setVisible (false);
+    }
+    
+    double setHeight;
+    double setWidth;
+    
+    //Button expands when mouse hovers over, shrinks when mouse stops hovering over it.
+    @FXML
+    void btnHover(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        setHeight=button.getPrefHeight();
+        setWidth=button.getPrefWidth();
+        button.setPrefHeight(setHeight*1.1);
+        button.setPrefWidth(setWidth*1.1);
+        button.setTranslateX((setWidth-setWidth*1.1)/2);
+        button.setTranslateY((setHeight-setHeight*1.1)/2);
+        button.toFront();     
+    }   
+    @FXML
+    void btnUnhover(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setPrefHeight(setHeight);
+        button.setPrefWidth(setWidth);
+        button.setTranslateX(0);
+        button.setTranslateY(0);
     }
     
     @Override

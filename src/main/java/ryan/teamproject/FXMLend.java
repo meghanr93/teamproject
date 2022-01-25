@@ -21,13 +21,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import static ryan.teamproject.MainApp.setRoot;
 
 /**
  * FXML Controller class
  *Charley Treen
  * January 17th, 2021
- * Frogger like game with Keypress and an ability to win and lose
+ * End screen
  */
 //please ignore frogger, now changed to end screen
 public class FXMLend implements Initializable {
@@ -55,30 +56,52 @@ System.exit(0);
 
     @FXML
     void btnFish(ActionEvent event) throws IOException {
-MainApp.setRoot("primary");
-
+    MainApp.setRoot("ice");
     }
 
     @FXML
-    void btnFrogger(ActionEvent event) {
-/*@FXML
-private void btnClickAction(ActionEvent event) throws IOException {
-MainApp.setRoot("page2");
-}*/
+    void btnFrogger(ActionEvent event) throws IOException {
+    MainApp.setRoot("frogger");
     }
 
     @FXML
-    void btnMemory(ActionEvent event) {
-/*@FXML
-private void btnClickAction(ActionEvent event) throws IOException {
-MainApp.setRoot("page2");
-}*/
+    void btnMemory(ActionEvent event) throws IOException {
+    MainApp.setRoot("colourMemo");
+    }
+    
+    @FXML
+    void btnGameMenuClick(ActionEvent event) throws IOException {
+    MainApp.setRoot("gamesMenu");
+    }
+    
+    //Button expands when mouse hovers over, shrinks when mouse stops hovering over it.
+    double setHeight;
+    double setWidth;
+    @FXML
+    void btnHover(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        setHeight=button.getPrefHeight();
+        setWidth=button.getPrefWidth();
+        button.setPrefHeight(setHeight*1.1);
+        button.setPrefWidth(setWidth*1.1);
+        button.setTranslateX((setWidth-setWidth*1.1)/2);
+        button.setTranslateY((setHeight-setHeight*1.1)/2);
+        button.toFront();     
+    }   
+    @FXML
+    void btnUnhover(MouseEvent event) {
+        Button button = (Button) event.getSource();
+        button.setPrefHeight(setHeight);
+        button.setPrefWidth(setWidth);
+        button.setTranslateX(0);
+        button.setTranslateY(0);
+        button.toBack();
     }
 
 
 @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        lblScore.setText(""+MainApp.gameScore);
     }    
     
 }

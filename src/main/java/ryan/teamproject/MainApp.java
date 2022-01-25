@@ -11,13 +11,15 @@ import java.io.IOException;
 
 public class MainApp extends Application {
     private static Stage stage;
-
+    
     @Override
     public void start(@SuppressWarnings("exports") Stage s) throws IOException {
         stage=s;
         setRoot("primary","");
     }
-
+    
+    public static int gameScore;
+    
     static void setRoot(String fxml) throws IOException {
         setRoot(fxml,stage.getTitle());
     }

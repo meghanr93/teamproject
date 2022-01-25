@@ -56,5 +56,6 @@
             <Image url="@../frog.png" />
          </image>
       </ImageView>
+      <Button fx:id="btnEndScreen" disable="true" focusTraversable="false" layoutX="414.0" layoutY="553.0" mnemonicParsing="false" onAction="#btnEndScreenClick" onMouseEntered="#btnHover" onMouseExited="#btnUnhover" prefHeight="36.0" prefWidth="84.0" text="End Screen" />
    </children>
 </AnchorPane>

@@ -22,7 +22,7 @@ public class Games {
     }
     @FXML
     void imgFishing(MouseEvent event)throws IOException {
-
+        MainApp.setRoot("ice");
     }
     @FXML
     void imgFrogger(MouseEvent event)throws IOException {

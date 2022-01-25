@@ -31,13 +31,13 @@ public class FXMLController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Game Info");
         alert.setHeaderText(null);
-        alert.setContentText("Open the game menu to access 3 different mini games.");
+        alert.setContentText("Open the game menu to access 3 different mini games. Your scores will add up to a total on the end screen!");
         alert.showAndWait();
     }
 
     @FXML
     void btnScores(ActionEvent event)throws IOException {
-        MainApp.setRoot("scores");
+        MainApp.setRoot("endscreen");
     }
     
     @FXML
